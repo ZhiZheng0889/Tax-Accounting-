@@ -1,0 +1,13 @@
+#+ Word temporary/lock files
+~$*.docx
+~$*.doc
+*.tmp
+*.bak
+Thumbs.db
+Desktop.ini
+
+#+ OS cruft
+.DS_Store
+
+#+ Misc
+*.log
