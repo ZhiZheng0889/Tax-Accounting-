@@ -16,3 +16,21 @@ Suggested conventions
 Notes
 - You can rename or add subfolders anytime (e.g., 01-Tax/Personal, 01-Tax/Business).
 - Consider storing key PDFs in 03-References and linking to them from your notes.
+
+Payroll Calculator
+- Location: `tools/payroll_calculator.py`
+- Requirements: Python 3.9+
+
+Quick examples
+- Hourly: `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 30 --hours 80 --ytd-wages 50000 --federal-rate 12% --state-rate 5%`
+- Salary: `python tools/payroll_calculator.py --pay-type salary --salary 3500 --ytd-wages 120000 --federal-rate 0.18 --state-rate 6`
+
+What it does
+- Computes Social Security (6.2%) up to the annual wage base (by year), considering YTD wages.
+- Computes Medicare (1.45%) and Additional Medicare (0.9%) above $200,000 YTD.
+- Optionally withholds federal and state income tax at a flat percentage you provide.
+
+Notes
+- YTD wages matter for capping Social Security and triggering Additional Medicare.
+- `--federal-rate` and `--state-rate` accept `0.12`, `12` or `12%` formats.
+- This is a simplified calculator (flat FIT/SIT rates). For exact withholding, use current IRS/state tables and W‑4 details.
