@@ -77,11 +77,24 @@ def state_income_tax(employee_gross: float, state_rate: Optional[float]) -> floa
     return round(employee_gross * state_rate, 2)
 
 
-def gross_pay(pay_type: str, *, hourly_rate: Optional[float] = None, hours: Optional[float] = None, salary: Optional[float] = None) -> float:
+def gross_pay(
+    pay_type: str,
+    *,
+    hourly_rate: Optional[float] = None,
+    hours: Optional[float] = None,
+    overtime_hours: float = 0.0,
+    overtime_multiplier: float = 1.5,
+    salary: Optional[float] = None,
+) -> float:
     if pay_type == "hourly":
-        if hourly_rate is None or hours is None:
-            raise ValueError("Hourly pay requires --hourly-rate and --hours")
-        return round(hourly_rate * hours, 2)
+        if hourly_rate is None:
+            raise ValueError("Hourly pay requires --hourly-rate")
+        reg_hours = float(hours) if hours is not None else 0.0
+        ot_hours = float(overtime_hours or 0.0)
+        if reg_hours <= 0 and ot_hours <= 0:
+            raise ValueError("Provide --hours and/or --overtime-hours for hourly pay")
+        gross = (hourly_rate * reg_hours) + (hourly_rate * ot_hours * (overtime_multiplier or 1.0))
+        return round(gross, 2)
     elif pay_type == "salary":
         if salary is None:
             raise ValueError("Salary pay requires --salary (per pay period)")
@@ -94,9 +107,18 @@ def compute_paycheck(pay_type: str,
                      *,
                      hourly_rate: Optional[float] = None,
                      hours: Optional[float] = None,
+                     overtime_hours: float = 0.0,
+                     overtime_multiplier: float = 1.5,
                      salary: Optional[float] = None,
                      config: PayrollConfig) -> Dict[str, float]:
-    g = gross_pay(pay_type, hourly_rate=hourly_rate, hours=hours, salary=salary)
+    g = gross_pay(
+        pay_type,
+        hourly_rate=hourly_rate,
+        hours=hours,
+        overtime_hours=overtime_hours,
+        overtime_multiplier=overtime_multiplier,
+        salary=salary,
+    )
 
     ss = social_security(g, year=config.year, ytd_wages=config.ytd_wages)
     medi = medicare(g, ytd_wages=config.ytd_wages)
@@ -132,7 +154,14 @@ def main():
     p = argparse.ArgumentParser(description="Payroll calculator for Social Security, Medicare, and optional Fed/State withholding.")
     p.add_argument("--pay-type", choices=["hourly", "salary"], required=True, help="Pay type for this paycheck")
     p.add_argument("--hourly-rate", type=float, help="Hourly rate (for hourly pay)")
-    p.add_argument("--hours", type=float, help="Hours worked in this pay period (for hourly pay)")
+    p.add_argument("--hours", type=float, help="Regular hours in this pay period (for hourly pay)")
+    p.add_argument("--overtime-hours", type=float, default=0.0, help="Overtime hours this period (default 0). Typical FLSA weekly OT is hours over 40.")
+    p.add_argument(
+        "--overtime-multiplier",
+        type=float,
+        default=1.5,
+        help="Overtime rate multiplier (default 1.5x). Use 2.0 for double-time scenarios.",
+    )
     p.add_argument("--salary", type=float, help="Salary amount per pay period (for salary pay)")
 
     p.add_argument("--year", type=int, default=2025, help="Tax year (for SSA wage base)")
@@ -153,6 +182,8 @@ def main():
         args.pay_type,
         hourly_rate=args.hourly_rate,
         hours=args.hours,
+        overtime_hours=args.overtime_hours,
+        overtime_multiplier=args.overtime_multiplier,
         salary=args.salary,
         config=config,
     )
@@ -171,4 +202,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

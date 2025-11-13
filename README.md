@@ -21,16 +21,31 @@ Payroll Calculator
 - Location: `tools/payroll_calculator.py`
 - Requirements: Python 3.9+
 
+GUI
+- Location: `tools/payroll_gui.py`
+- Launch: `python tools/payroll_gui.py`
+- Provides fields for hourly/salary, regular hours, overtime hours, overtime multiplier, YTD wages, and flat federal/state rates.
+
 Quick examples
-- Hourly: `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 30 --hours 80 --ytd-wages 50000 --federal-rate 12% --state-rate 5%`
+- Hourly with overtime: `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 30 --hours 80 --overtime-hours 10 --overtime-multiplier 1.5 --ytd-wages 50000 --federal-rate 12% --state-rate 5%`
+- Hourly (no overtime): `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 20 --hours 38 --ytd-wages 10000`
 - Salary: `python tools/payroll_calculator.py --pay-type salary --salary 3500 --ytd-wages 120000 --federal-rate 0.18 --state-rate 6`
 
 What it does
 - Computes Social Security (6.2%) up to the annual wage base (by year), considering YTD wages.
 - Computes Medicare (1.45%) and Additional Medicare (0.9%) above $200,000 YTD.
 - Optionally withholds federal and state income tax at a flat percentage you provide.
+- For hourly pay, includes overtime by multiplying `overtime_hours` by the specified `overtime_multiplier` (default 1.5x).
 
 Notes
 - YTD wages matter for capping Social Security and triggering Additional Medicare.
 - `--federal-rate` and `--state-rate` accept `0.12`, `12` or `12%` formats.
-- This is a simplified calculator (flat FIT/SIT rates). For exact withholding, use current IRS/state tables and W‑4 details.
+- This is a simplified calculator (flat FIT/SIT rates). For exact withholding, use current IRS/state tables and W-4 details.
+
+Overtime basics (U.S. FLSA)
+- Most non-exempt employees earn overtime at 1.5x for hours over 40 in a workweek.
+- Some states (e.g., California) impose daily overtime or double-time; this tool does not automatically apply those. Enter such hours as `--overtime-hours` with an appropriate `--overtime-multiplier` (e.g., 2.0 for double-time).
+
+Overtime examples
+- $20/hr, 45 hours in the week: Gross = 40×$20 + 5×$20×1.5 = $950
+- $30/hr, 50 hours: Gross = 40×$30 + 10×$30×1.5 = $1,650
