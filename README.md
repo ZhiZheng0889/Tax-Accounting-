@@ -25,22 +25,33 @@ GUI
 - Location: `tools/payroll_gui.py`
 - Launch: `python tools/payroll_gui.py`
 - Provides fields for hourly/salary, regular hours, overtime hours, overtime multiplier, YTD wages, and flat federal/state rates.
+ - Also supports: double-time hours, daily-hours with CA daily OT, pre-tax deductions, and IRS percentage-method withholding with W-4 inputs.
 
 Quick examples
-- Hourly with overtime: `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 30 --hours 80 --overtime-hours 10 --overtime-multiplier 1.5 --ytd-wages 50000 --federal-rate 12% --state-rate 5%`
-- Hourly (no overtime): `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 20 --hours 38 --ytd-wages 10000`
-- Salary: `python tools/payroll_calculator.py --pay-type salary --salary 3500 --ytd-wages 120000 --federal-rate 0.18 --state-rate 6`
+- Hourly with overtime (flat FIT):
+  `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 30 --hours 40 --overtime-hours 5 --ytd-wages 50000 --withholding-method flat --federal-rate 12% --state-rate 5%`
+- Hourly with daily-hours + CA daily OT:
+  `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 25 --daily-hours 8,9.5,10,7,12 --use-ca-daily-ot --ytd-wages 20000 --withholding-method flat --federal-rate 10%`
+- Hourly with IRS percentage method and pre-tax:
+  `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 35 --hours 80 --withholding-method irs_percentage --filing-status married --pay-periods 26 --w4-step3 4000 --pretax-401k 200 --pretax-section125 150`
+- Salary:
+  `python tools/payroll_calculator.py --pay-type salary --salary 3500 --ytd-wages 120000 --withholding-method irs_percentage --filing-status single --pay-periods 24`
 
 What it does
 - Computes Social Security (6.2%) up to the annual wage base (by year), considering YTD wages.
 - Computes Medicare (1.45%) and Additional Medicare (0.9%) above $200,000 YTD.
 - Optionally withholds federal and state income tax at a flat percentage you provide.
 - For hourly pay, includes overtime by multiplying `overtime_hours` by the specified `overtime_multiplier` (default 1.5x).
+ - Optional double-time and daily-hours parsing (CA daily OT mode available).
+ - Pre-tax deductions: 401(k) reduces FIT; HSA and Section 125 reduce FIT and FICA.
+ - Employer cost view: shows employer Social Security and Medicare.
+ - IRS percentage-method withholding (approximate) with W-4 inputs for planning.
 
 Notes
 - YTD wages matter for capping Social Security and triggering Additional Medicare.
 - `--federal-rate` and `--state-rate` accept `0.12`, `12` or `12%` formats.
 - This is a simplified calculator (flat FIT/SIT rates). For exact withholding, use current IRS/state tables and W-4 details.
+ - The IRS percentage-method implementation here is a planning approximation using 2025 brackets and standard deductions; results may differ from exact Pub 15-T tables.
 
 Overtime basics (U.S. FLSA)
 - Most non-exempt employees earn overtime at 1.5x for hours over 40 in a workweek.
