@@ -11,3 +11,20 @@ Desktop.ini
 
 #+ Misc
 *.log
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual envs
+.venv/
+venv/
+ENV/
+
+# Build
+build/
+dist/
+*.egg-info/
+
