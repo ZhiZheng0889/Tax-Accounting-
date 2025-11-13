@@ -25,7 +25,8 @@ GUI
 - Location: `tools/payroll_gui.py`
 - Launch: `python tools/payroll_gui.py`
 - Provides fields for hourly/salary, regular hours, overtime hours, overtime multiplier, YTD wages, and flat federal/state rates.
- - Also supports: double-time hours, daily-hours with CA daily OT, pre-tax deductions, and IRS percentage-method withholding with W-4 inputs.
+- Also supports: double-time hours, daily-hours with CA daily OT, pre-tax deductions, and IRS percentage-method withholding with W-4 inputs.
+- UX: persistent settings (saved in your home folder), inline error banner, Show Explanation panel, Copy Breakdown, Export CSV, simple compare vs previous run.
 
 Quick examples
 - Hourly with overtime (flat FIT):
@@ -36,6 +37,11 @@ Quick examples
   `python tools/payroll_calculator.py --pay-type hourly --hourly-rate 35 --hours 80 --withholding-method irs_percentage --filing-status married --pay-periods 26 --w4-step3 4000 --pretax-401k 200 --pretax-section125 150`
 - Salary:
   `python tools/payroll_calculator.py --pay-type salary --salary 3500 --ytd-wages 120000 --withholding-method irs_percentage --filing-status single --pay-periods 24`
+
+CLI output options
+- `--json` prints JSON instead of text
+- `--explain` prints a step-by-step breakdown (with math and brackets)
+- `--output-csv PATH` writes a one-line CSV of results
 
 What it does
 - Computes Social Security (6.2%) up to the annual wage base (by year), considering YTD wages.
