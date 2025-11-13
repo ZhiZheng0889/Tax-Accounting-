@@ -24,12 +24,31 @@ class PayrollGUI(tk.Tk):
         self.hours = tk.StringVar()
         self.overtime_hours = tk.StringVar(value="0")
         self.overtime_multiplier = tk.StringVar(value="1.5")
+        self.doubletime_hours = tk.StringVar(value="0")
+        self.doubletime_multiplier = tk.StringVar(value="2.0")
+        self.daily_hours = tk.StringVar()
+        self.use_ca_daily_ot = tk.BooleanVar(value=False)
         self.salary = tk.StringVar()
 
         self.year = tk.StringVar(value="2025")
         self.ytd_wages = tk.StringVar(value="0")
+        self.withholding_method = tk.StringVar(value="flat")
         self.federal_rate = tk.StringVar()
         self.state_rate = tk.StringVar()
+
+        # W-4 style variables (percentage method)
+        self.filing_status = tk.StringVar(value="single")
+        self.pay_periods = tk.StringVar(value="26")
+        self.w4_step2 = tk.BooleanVar(value=False)
+        self.w4_step3 = tk.StringVar(value="0")
+        self.w4_step4a = tk.StringVar(value="0")
+        self.w4_step4b = tk.StringVar(value="0")
+        self.w4_step4c = tk.StringVar(value="0")
+
+        # Pre-tax deductions
+        self.pretax_401k = tk.StringVar(value="0")
+        self.pretax_hsa = tk.StringVar(value="0")
+        self.pretax_section125 = tk.StringVar(value="0")
 
         self._build_ui()
         self._toggle_fields()
@@ -60,6 +79,16 @@ class PayrollGUI(tk.Tk):
         ttk.Label(frm_hourly, text="OT Multiplier").grid(row=3, column=0, sticky="e", **pad)
         ttk.Entry(frm_hourly, textvariable=self.overtime_multiplier, width=12).grid(row=3, column=1, **pad)
 
+        ttk.Label(frm_hourly, text="Double-time Hours").grid(row=4, column=0, sticky="e", **pad)
+        ttk.Entry(frm_hourly, textvariable=self.doubletime_hours, width=12).grid(row=4, column=1, **pad)
+
+        ttk.Label(frm_hourly, text="DT Multiplier").grid(row=5, column=0, sticky="e", **pad)
+        ttk.Entry(frm_hourly, textvariable=self.doubletime_multiplier, width=12).grid(row=5, column=1, **pad)
+
+        ttk.Label(frm_hourly, text="Daily Hours (CSV)").grid(row=6, column=0, sticky="e", **pad)
+        ttk.Entry(frm_hourly, textvariable=self.daily_hours, width=20).grid(row=6, column=1, **pad)
+        ttk.Checkbutton(frm_hourly, text="Use CA daily OT", variable=self.use_ca_daily_ot).grid(row=6, column=2, sticky="w", **pad)
+
         # Salary input
         frm_salary = ttk.LabelFrame(self, text="Salary Input")
         frm_salary.grid(row=2, column=0, sticky="ew", **pad)
@@ -78,36 +107,75 @@ class PayrollGUI(tk.Tk):
         ttk.Label(frm_cfg, text="YTD Wages ($)").grid(row=0, column=2, sticky="e", **pad)
         ttk.Entry(frm_cfg, textvariable=self.ytd_wages, width=12).grid(row=0, column=3, **pad)
 
-        ttk.Label(frm_cfg, text="Federal Rate").grid(row=1, column=0, sticky="e", **pad)
-        ttk.Entry(frm_cfg, textvariable=self.federal_rate, width=8).grid(row=1, column=1, **pad)
-        ttk.Label(frm_cfg, text="(e.g., 12 or 12%)").grid(row=1, column=2, sticky="w", **pad)
+        ttk.Label(frm_cfg, text="Withholding Method").grid(row=1, column=0, sticky="e", **pad)
+        ttk.Combobox(frm_cfg, textvariable=self.withholding_method, values=("flat","irs_percentage"), width=14, state="readonly").grid(row=1, column=1, **pad)
 
-        ttk.Label(frm_cfg, text="State Rate").grid(row=1, column=3, sticky="e", **pad)
-        ttk.Entry(frm_cfg, textvariable=self.state_rate, width=8).grid(row=1, column=4, **pad)
+        ttk.Label(frm_cfg, text="Federal Rate").grid(row=1, column=2, sticky="e", **pad)
+        ttk.Entry(frm_cfg, textvariable=self.federal_rate, width=8).grid(row=1, column=3, **pad)
+        ttk.Label(frm_cfg, text="(flat mode)").grid(row=1, column=4, sticky="w", **pad)
+
+        ttk.Label(frm_cfg, text="State Rate").grid(row=2, column=0, sticky="e", **pad)
+        ttk.Entry(frm_cfg, textvariable=self.state_rate, width=8).grid(row=2, column=1, **pad)
+
+        # W-4 (percentage method)
+        ttk.Label(frm_cfg, text="Filing Status").grid(row=3, column=0, sticky="e", **pad)
+        ttk.Combobox(frm_cfg, textvariable=self.filing_status, values=("single","married","head"), width=10, state="readonly").grid(row=3, column=1, **pad)
+        ttk.Label(frm_cfg, text="Pay Periods/yr").grid(row=3, column=2, sticky="e", **pad)
+        ttk.Entry(frm_cfg, textvariable=self.pay_periods, width=6).grid(row=3, column=3, **pad)
+        ttk.Checkbutton(frm_cfg, text="W-4 Step 2 (multiple jobs)", variable=self.w4_step2).grid(row=3, column=4, sticky="w", **pad)
+
+        ttk.Label(frm_cfg, text="Step 3 credit (annual)").grid(row=4, column=0, sticky="e", **pad)
+        ttk.Entry(frm_cfg, textvariable=self.w4_step3, width=10).grid(row=4, column=1, **pad)
+        ttk.Label(frm_cfg, text="Step 4a other income").grid(row=4, column=2, sticky="e", **pad)
+        ttk.Entry(frm_cfg, textvariable=self.w4_step4a, width=10).grid(row=4, column=3, **pad)
+        ttk.Label(frm_cfg, text="Step 4b deductions").grid(row=4, column=4, sticky="e", **pad)
+        ttk.Entry(frm_cfg, textvariable=self.w4_step4b, width=10).grid(row=4, column=5, **pad)
+        ttk.Label(frm_cfg, text="Step 4c extra/period").grid(row=4, column=6, sticky="e", **pad)
+        ttk.Entry(frm_cfg, textvariable=self.w4_step4c, width=10).grid(row=4, column=7, **pad)
+
+        # Pre-tax deductions
+        frm_pre = ttk.LabelFrame(self, text="Pre-tax Deductions (per period)")
+        frm_pre.grid(row=4, column=0, sticky="ew", **pad)
+        ttk.Label(frm_pre, text="401(k)").grid(row=0, column=0, sticky="e", **pad)
+        ttk.Entry(frm_pre, textvariable=self.pretax_401k, width=10).grid(row=0, column=1, **pad)
+        ttk.Label(frm_pre, text="HSA").grid(row=0, column=2, sticky="e", **pad)
+        ttk.Entry(frm_pre, textvariable=self.pretax_hsa, width=10).grid(row=0, column=3, **pad)
+        ttk.Label(frm_pre, text="Section 125").grid(row=0, column=4, sticky="e", **pad)
+        ttk.Entry(frm_pre, textvariable=self.pretax_section125, width=10).grid(row=0, column=5, **pad)
 
         # Actions
         frm_actions = ttk.Frame(self)
-        frm_actions.grid(row=4, column=0, sticky="ew", **pad)
+        frm_actions.grid(row=6, column=0, sticky="ew", **pad)
         ttk.Button(frm_actions, text="Calculate", command=self._calculate).grid(row=0, column=0, **pad)
         ttk.Button(frm_actions, text="Overtime Rules", command=self._show_ot_rules).grid(row=0, column=1, **pad)
 
         # Results
         frm_res = ttk.LabelFrame(self, text="Results")
-        frm_res.grid(row=5, column=0, sticky="ew", **pad)
+        frm_res.grid(row=7, column=0, sticky="ew", **pad)
         self.lbl_gross = ttk.Label(frm_res, text="Gross: -")
         self.lbl_gross.grid(row=0, column=0, sticky="w", **pad)
+        self.lbl_tax_fica = ttk.Label(frm_res, text="FICA Taxable: -")
+        self.lbl_tax_fica.grid(row=1, column=0, sticky="w", **pad)
+        self.lbl_tax_fit = ttk.Label(frm_res, text="FIT Taxable: -")
+        self.lbl_tax_fit.grid(row=2, column=0, sticky="w", **pad)
         self.lbl_ss = ttk.Label(frm_res, text="Social Security: -")
-        self.lbl_ss.grid(row=1, column=0, sticky="w", **pad)
+        self.lbl_ss.grid(row=3, column=0, sticky="w", **pad)
         self.lbl_medi = ttk.Label(frm_res, text="Medicare: -")
-        self.lbl_medi.grid(row=2, column=0, sticky="w", **pad)
+        self.lbl_medi.grid(row=4, column=0, sticky="w", **pad)
         self.lbl_fit = ttk.Label(frm_res, text="Federal Income Tax: -")
-        self.lbl_fit.grid(row=3, column=0, sticky="w", **pad)
+        self.lbl_fit.grid(row=5, column=0, sticky="w", **pad)
         self.lbl_sit = ttk.Label(frm_res, text="State Income Tax: -")
-        self.lbl_sit.grid(row=4, column=0, sticky="w", **pad)
+        self.lbl_sit.grid(row=6, column=0, sticky="w", **pad)
         self.lbl_total = ttk.Label(frm_res, text="Total Deductions: -")
-        self.lbl_total.grid(row=5, column=0, sticky="w", **pad)
+        self.lbl_total.grid(row=7, column=0, sticky="w", **pad)
         self.lbl_net = ttk.Label(frm_res, text="Net Pay: -")
-        self.lbl_net.grid(row=6, column=0, sticky="w", **pad)
+        self.lbl_net.grid(row=8, column=0, sticky="w", **pad)
+        self.lbl_erss = ttk.Label(frm_res, text="Employer Social Security: -")
+        self.lbl_erss.grid(row=9, column=0, sticky="w", **pad)
+        self.lbl_ermedi = ttk.Label(frm_res, text="Employer Medicare: -")
+        self.lbl_ermedi.grid(row=10, column=0, sticky="w", **pad)
+        self.lbl_ertotal = ttk.Label(frm_res, text="Employer Total Payroll Taxes: -")
+        self.lbl_ertotal.grid(row=11, column=0, sticky="w", **pad)
 
     def _toggle_fields(self):
         hourly = self.pay_type.get() == "hourly"
@@ -127,7 +195,8 @@ class PayrollGUI(tk.Tk):
             pay_type = self.pay_type.get()
             year = int(self.year.get() or 2025)
             ytd = float(self.ytd_wages.get() or 0.0)
-            fed_rate = _parse_rate(self.federal_rate.get()) if self.federal_rate.get() else None
+            method = self.withholding_method.get()
+            fed_rate = _parse_rate(self.federal_rate.get()) if (self.federal_rate.get() and method == "flat") else None
             st_rate = _parse_rate(self.state_rate.get()) if self.state_rate.get() else None
 
             if pay_type == "hourly":
@@ -135,15 +204,39 @@ class PayrollGUI(tk.Tk):
                 hrs = float(self.hours.get()) if self.hours.get() else 0.0
                 ot_hrs = float(self.overtime_hours.get()) if self.overtime_hours.get() else 0.0
                 ot_mult = float(self.overtime_multiplier.get()) if self.overtime_multiplier.get() else 1.5
+                dt_hrs = float(self.doubletime_hours.get()) if self.doubletime_hours.get() else 0.0
+                dt_mult = float(self.doubletime_multiplier.get()) if self.doubletime_multiplier.get() else 2.0
+                daily = self.daily_hours.get().strip() if self.daily_hours.get() else None
+                use_ca = bool(self.use_ca_daily_ot.get())
                 salary = None
             else:
                 rate = None
                 hrs = None
                 ot_hrs = 0.0
                 ot_mult = 1.5
+                dt_hrs = 0.0
+                dt_mult = 2.0
+                daily = None
+                use_ca = False
                 salary = float(self.salary.get())
 
-            config = PayrollConfig(year=year, ytd_wages=ytd, federal_rate=fed_rate, state_rate=st_rate)
+            config = PayrollConfig(
+                year=year,
+                ytd_wages=ytd,
+                withholding_method=method,
+                federal_rate=fed_rate,
+                state_rate=st_rate,
+                filing_status=self.filing_status.get(),
+                pay_periods_per_year=int(self.pay_periods.get() or 26),
+                w4_step2=bool(self.w4_step2.get()),
+                w4_step3_dependents_credit=float(self.w4_step3.get() or 0.0),
+                w4_step4a_other_income=float(self.w4_step4a.get() or 0.0),
+                w4_step4b_deductions=float(self.w4_step4b.get() or 0.0),
+                w4_step4c_extra_withholding=float(self.w4_step4c.get() or 0.0),
+                pretax_401k=float(self.pretax_401k.get() or 0.0),
+                pretax_hsa=float(self.pretax_hsa.get() or 0.0),
+                pretax_section125=float(self.pretax_section125.get() or 0.0),
+            )
 
             result = compute_paycheck(
                 pay_type,
@@ -151,17 +244,29 @@ class PayrollGUI(tk.Tk):
                 hours=hrs,
                 overtime_hours=ot_hrs,
                 overtime_multiplier=ot_mult,
+                doubletime_hours=dt_hrs,
+                doubletime_multiplier=dt_mult,
+                daily_hours=daily,
+                use_ca_daily_ot=use_ca,
                 salary=salary,
                 config=config,
             )
 
             self.lbl_gross.configure(text=f"Gross: ${result['gross']:.2f}")
+            self.lbl_tax_fica.configure(text=f"FICA Taxable: ${result['taxable_wages_fica']:.2f}")
+            self.lbl_tax_fit.configure(text=f"FIT Taxable: ${result['taxable_wages_fit']:.2f}")
             self.lbl_ss.configure(text=f"Social Security: ${result['social_security']:.2f}")
             self.lbl_medi.configure(text=f"Medicare: ${result['medicare']:.2f}")
-            self.lbl_fit.configure(text=f"Federal Income Tax: ${result['federal_income_tax']:.2f}" if fed_rate else "Federal Income Tax: -")
+            if method == "irs_percentage":
+                self.lbl_fit.configure(text=f"Federal Income Tax (IRS %): ${result['federal_income_tax']:.2f}")
+            else:
+                self.lbl_fit.configure(text=f"Federal Income Tax: ${result['federal_income_tax']:.2f}" if fed_rate else "Federal Income Tax: -")
             self.lbl_sit.configure(text=f"State Income Tax: ${result['state_income_tax']:.2f}" if st_rate else "State Income Tax: -")
             self.lbl_total.configure(text=f"Total Deductions: ${result['total_deductions']:.2f}")
             self.lbl_net.configure(text=f"Net Pay: ${result['net']:.2f}")
+            self.lbl_erss.configure(text=f"Employer Social Security: ${result['employer_social_security']:.2f}")
+            self.lbl_ermedi.configure(text=f"Employer Medicare: ${result['employer_medicare']:.2f}")
+            self.lbl_ertotal.configure(text=f"Employer Total Payroll Taxes: ${result['employer_total']:.2f}")
 
         except Exception as e:
             messagebox.showerror("Error", str(e))
@@ -195,4 +300,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
