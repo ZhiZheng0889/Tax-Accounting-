@@ -28,10 +28,17 @@ class PayrollConfig:
     w4_step4a_other_income: float = 0.0      # annual
     w4_step4b_deductions: float = 0.0        # annual, in excess of standard deduction
     w4_step4c_extra_withholding: float = 0.0 # per period extra withholding
-    # Pre-tax deductions per period
+    # Pre-tax deductions per period (dollars)
     pretax_401k: float = 0.0            # reduces FIT only (traditional 401k)
     pretax_hsa: float = 0.0             # reduces FIT and FICA when via cafeteria plan
     pretax_section125: float = 0.0      # reduces FIT and FICA (e.g., health premiums)
+    # Pre-tax deductions as percentage of gross (0-1 values, e.g. 0.05 = 5%)
+    pretax_401k_percent: float = 0.0
+    pretax_hsa_percent: float = 0.0
+    pretax_section125_percent: float = 0.0
+    # Post-tax deductions per period
+    posttax_flat: float = 0.0               # flat amount from net
+    posttax_percent_net: float = 0.0        # fraction of net-before-posttax (0-1)
 
 
 def _clamp(val: float, lo: float, hi: float) -> float:
@@ -294,7 +301,7 @@ def _hours_from_daily(daily_hours: Optional[str], use_ca_daily_ot: bool) -> Dict
     return {"regular_hours": reg, "overtime_hours": ot, "doubletime_hours": dt}
 
 
-def gross_pay(
+def _earnings_breakdown(
     pay_type: str,
     *,
     hourly_rate: Optional[float] = None,
@@ -306,7 +313,10 @@ def gross_pay(
     daily_hours: Optional[str] = None,
     use_ca_daily_ot: bool = False,
     salary: Optional[float] = None,
-) -> float:
+) -> Dict[str, float]:
+    """
+    Compute regular/OT/DT hours and earnings plus gross.
+    """
     if pay_type == "hourly":
         if hourly_rate is None:
             raise ValueError("Hourly pay requires --hourly-rate")
@@ -321,18 +331,61 @@ def gross_pay(
             dt_hours = float(doubletime_hours or 0.0)
         if reg_hours <= 0 and ot_hours <= 0 and dt_hours <= 0:
             raise ValueError("Provide hours via --hours/--overtime-hours or --daily-hours for hourly pay")
-        gross = (
-            (hourly_rate * reg_hours)
-            + (hourly_rate * ot_hours * (overtime_multiplier or 1.0))
-            + (hourly_rate * dt_hours * (doubletime_multiplier or 2.0))
-        )
-        return round(gross, 2)
+        reg_pay = hourly_rate * reg_hours
+        ot_pay = hourly_rate * ot_hours * (overtime_multiplier or 1.0)
+        dt_pay = hourly_rate * dt_hours * (doubletime_multiplier or 2.0)
+        gross = reg_pay + ot_pay + dt_pay
     elif pay_type == "salary":
         if salary is None:
             raise ValueError("Salary pay requires --salary (per pay period)")
-        return round(salary, 2)
+        reg_hours = ot_hours = dt_hours = 0.0
+        reg_pay = float(salary)
+        ot_pay = 0.0
+        dt_pay = 0.0
+        gross = reg_pay
     else:
         raise ValueError("pay_type must be 'hourly' or 'salary'")
+
+    return {
+        "regular_hours": reg_hours,
+        "overtime_hours": ot_hours,
+        "doubletime_hours": dt_hours,
+        "regular_pay": reg_pay,
+        "overtime_pay": ot_pay,
+        "doubletime_pay": dt_pay,
+        "gross": gross,
+    }
+
+
+def gross_pay(
+    pay_type: str,
+    *,
+    hourly_rate: Optional[float] = None,
+    hours: Optional[float] = None,
+    overtime_hours: float = 0.0,
+    overtime_multiplier: float = 1.5,
+    doubletime_hours: float = 0.0,
+    doubletime_multiplier: float = 2.0,
+    daily_hours: Optional[str] = None,
+    use_ca_daily_ot: bool = False,
+    salary: Optional[float] = None,
+) -> float:
+    """
+    Backwards-compatible helper that returns only gross pay.
+    """
+    breakdown = _earnings_breakdown(
+        pay_type,
+        hourly_rate=hourly_rate,
+        hours=hours,
+        overtime_hours=overtime_hours,
+        overtime_multiplier=overtime_multiplier,
+        doubletime_hours=doubletime_hours,
+        doubletime_multiplier=doubletime_multiplier,
+        daily_hours=daily_hours,
+        use_ca_daily_ot=use_ca_daily_ot,
+        salary=salary,
+    )
+    return round(breakdown["gross"], 2)
 
 
 def compute_paycheck(pay_type: str,
@@ -347,7 +400,7 @@ def compute_paycheck(pay_type: str,
                      use_ca_daily_ot: bool = False,
                      salary: Optional[float] = None,
                      config: PayrollConfig) -> Dict[str, float]:
-    g = gross_pay(
+    breakdown = _earnings_breakdown(
         pay_type,
         hourly_rate=hourly_rate,
         hours=hours,
@@ -359,10 +412,15 @@ def compute_paycheck(pay_type: str,
         use_ca_daily_ot=use_ca_daily_ot,
         salary=salary,
     )
+    g = round(breakdown["gross"], 2)
 
-    # Pre-tax adjustments
-    pretax_fit_only = max(config.pretax_401k, 0.0)
-    pretax_fit_fica = max(config.pretax_hsa, 0.0) + max(config.pretax_section125, 0.0)
+    # Pre-tax adjustments (dollar + percent-of-gross)
+    pretax_401k_amt = max(config.pretax_401k, 0.0) + max(config.pretax_401k_percent, 0.0) * g
+    pretax_hsa_amt = max(config.pretax_hsa, 0.0) + max(config.pretax_hsa_percent, 0.0) * g
+    pretax_125_amt = max(config.pretax_section125, 0.0) + max(config.pretax_section125_percent, 0.0) * g
+
+    pretax_fit_only = pretax_401k_amt
+    pretax_fit_fica = pretax_hsa_amt + pretax_125_amt
 
     fica_taxable = max(g - pretax_fit_fica, 0.0)
     fit_taxable = max(g - pretax_fit_only - pretax_fit_fica, 0.0)
@@ -388,14 +446,25 @@ def compute_paycheck(pay_type: str,
 
     # State withholding (still flat, applied to FIT taxable wages)
     sit = state_income_tax(fit_taxable, config.state_rate)
+    base_deductions = ss + medi + fit + sit
 
-    total_deductions = round(ss + medi + fit + sit, 2)
+    # Post-tax deductions (from net-after-tax)
+    post_flat = max(config.posttax_flat, 0.0)
+    post_pct = max(config.posttax_percent_net, 0.0)
+    net_before_posttax = max(g - base_deductions, 0.0)
+    post_pct_amt = max(net_before_posttax * post_pct, 0.0)
+    posttax_total = round(post_flat + post_pct_amt, 2)
+
+    total_deductions = round(base_deductions + posttax_total, 2)
     net = round(g - total_deductions, 2)
 
     # Employer costs
     employer_ss = social_security(fica_taxable, year=config.year, ytd_wages=config.ytd_wages)
     employer_medi_amt = employer_medicare(fica_taxable, ytd_wages=config.ytd_wages)
     employer_total = round(employer_ss + employer_medi_amt, 2)
+
+    effective_rate = round(total_deductions / g, 4) if g > 0 else 0.0
+    total_employer_cost = round(g + employer_total, 2)
 
     return {
         "gross": g,
@@ -405,11 +474,20 @@ def compute_paycheck(pay_type: str,
         "medicare": medi,
         "federal_income_tax": fit,
         "state_income_tax": sit,
+        "posttax_deductions": posttax_total,
         "total_deductions": total_deductions,
         "net": net,
         "employer_social_security": round(employer_ss, 2),
         "employer_medicare": round(employer_medi_amt, 2),
         "employer_total": employer_total,
+        "regular_hours": round(breakdown["regular_hours"], 2),
+        "overtime_hours": round(breakdown["overtime_hours"], 2),
+        "doubletime_hours": round(breakdown["doubletime_hours"], 2),
+        "regular_pay": round(breakdown["regular_pay"], 2),
+        "overtime_pay": round(breakdown["overtime_pay"], 2),
+        "doubletime_pay": round(breakdown["doubletime_pay"], 2),
+        "effective_employee_tax_rate": effective_rate,
+        "total_employer_cost": total_employer_cost,
     }
 
 
@@ -428,27 +506,29 @@ def build_explanation_text(
     config: PayrollConfig,
 ) -> str:
     # Recompute components needed for explanation
-    if pay_type == "hourly":
-        if daily_hours:
-            br = _hours_from_daily(daily_hours, use_ca_daily_ot)
-            reg_hours = br["regular_hours"]
-            ot_hours = br["overtime_hours"]
-            dt_hours = br["doubletime_hours"]
-        else:
-            reg_hours = float(hours) if hours is not None else 0.0
-            ot_hours = float(overtime_hours or 0.0)
-            dt_hours = float(doubletime_hours or 0.0)
-        gross = (
-            (hourly_rate * reg_hours)
-            + (hourly_rate * ot_hours * (overtime_multiplier or 1.0))
-            + (hourly_rate * dt_hours * (doubletime_multiplier or 2.0))
-        )
-    else:
-        reg_hours = ot_hours = dt_hours = 0.0
-        gross = float(salary or 0.0)
+    breakdown = _earnings_breakdown(
+        pay_type,
+        hourly_rate=hourly_rate,
+        hours=hours,
+        overtime_hours=overtime_hours,
+        overtime_multiplier=overtime_multiplier,
+        doubletime_hours=doubletime_hours,
+        doubletime_multiplier=doubletime_multiplier,
+        daily_hours=daily_hours,
+        use_ca_daily_ot=use_ca_daily_ot,
+        salary=salary,
+    )
+    reg_hours = breakdown["regular_hours"]
+    ot_hours = breakdown["overtime_hours"]
+    dt_hours = breakdown["doubletime_hours"]
+    gross = breakdown["gross"]
 
-    pretax_fit_only = max(config.pretax_401k, 0.0)
-    pretax_fit_fica = max(config.pretax_hsa, 0.0) + max(config.pretax_section125, 0.0)
+    pretax_401k_amt = max(config.pretax_401k, 0.0) + max(config.pretax_401k_percent, 0.0) * gross
+    pretax_hsa_amt = max(config.pretax_hsa, 0.0) + max(config.pretax_hsa_percent, 0.0) * gross
+    pretax_125_amt = max(config.pretax_section125, 0.0) + max(config.pretax_section125_percent, 0.0) * gross
+
+    pretax_fit_only = pretax_401k_amt
+    pretax_fit_fica = pretax_hsa_amt + pretax_125_amt
     fica_taxable = max(gross - pretax_fit_fica, 0.0)
     fit_taxable = max(gross - pretax_fit_only - pretax_fit_fica, 0.0)
 
@@ -486,9 +566,20 @@ def build_explanation_text(
     if pretax_fit_only or pretax_fit_fica:
         lines.append("Pre-tax deductions:")
         if pretax_fit_only:
-            lines.append(f"- 401(k) (FIT only): ${pretax_fit_only:.2f}")
-        if pretax_fit_fica:
-            lines.append(f"- HSA/Section125 (FIT+FICA): ${pretax_fit_fica:.2f}")
+            pct = (config.pretax_401k_percent or 0.0) * 100.0
+            if pct:
+                lines.append(f"- 401(k) (FIT only): ${pretax_fit_only:.2f} ({pct:.2f}% of gross)")
+            else:
+                lines.append(f"- 401(k) (FIT only): ${pretax_fit_only:.2f}")
+        if pretax_hsa_amt or pretax_125_amt:
+            text_parts = []
+            if pretax_hsa_amt:
+                pct = (config.pretax_hsa_percent or 0.0) * 100.0
+                text_parts.append(f"HSA ${pretax_hsa_amt:.2f}" + (f" ({pct:.2f}%)" if pct else ""))
+            if pretax_125_amt:
+                pct = (config.pretax_section125_percent or 0.0) * 100.0
+                text_parts.append(f"Section125 ${pretax_125_amt:.2f}" + (f" ({pct:.2f}%)" if pct else ""))
+            lines.append(f"- {' + '.join(text_parts)} (FIT+FICA)")
         lines.append(f"FICA taxable wages = Gross - FIT+FICA pretax = ${fica_taxable:.2f}")
         lines.append(f"FIT taxable wages = Gross - all applicable pretax = ${fit_taxable:.2f}")
 
@@ -552,8 +643,12 @@ def build_explanation_text(
         config=config,
     )
     lines.append("")
+    lines.append(f"Post-tax deductions = ${result['posttax_deductions']:.2f}")
     lines.append(f"Total deductions = ${result['total_deductions']:.2f}")
     lines.append(f"Net pay = Gross - deductions = ${result['net']:.2f}")
+    lines.append(f"Effective employee deduction rate = {result['effective_employee_tax_rate']*100:.2f}%")
+    lines.append(f"Employer payroll taxes this period = ${result['employer_total']:.2f}")
+    lines.append(f"Total employer cost (wages + taxes) = ${result['total_employer_cost']:.2f}")
     return "\n".join(lines)
 
 
@@ -605,6 +700,13 @@ def main():
     p.add_argument("--pretax-401k", type=float, default=0.0, help="Traditional 401(k) deferral amount per period (reduces FIT only)")
     p.add_argument("--pretax-hsa", type=float, default=0.0, help="HSA contribution per period (reduces FIT and FICA if via cafeteria plan)")
     p.add_argument("--pretax-section125", type=float, default=0.0, help="Section 125 premiums per period (reduces FIT and FICA)")
+    p.add_argument("--pretax-401k-pct", type=str, default=None, help="Optional 401(k) percent of gross (e.g., 5 or 0.05 or 5%)")
+    p.add_argument("--pretax-hsa-pct", type=str, default=None, help="Optional HSA percent of gross")
+    p.add_argument("--pretax-section125-pct", type=str, default=None, help="Optional Section 125 percent of gross")
+
+    # Post-tax deductions
+    p.add_argument("--posttax-flat", type=float, default=0.0, help="Flat post-tax deductions per period (e.g., garnishment)")
+    p.add_argument("--posttax-percent-net", type=str, default=None, help="Percent of net-after-tax to deduct as post-tax (e.g., after-tax savings)")
 
     # Output / UX
     p.add_argument("--json", action="store_true", help="Output JSON instead of text")
@@ -629,6 +731,11 @@ def main():
         pretax_401k=args.pretax_401k,
         pretax_hsa=args.pretax_hsa,
         pretax_section125=args.pretax_section125,
+        pretax_401k_percent=_parse_rate(args.pretax_401k_pct),
+        pretax_hsa_percent=_parse_rate(args.pretax_hsa_pct),
+        pretax_section125_percent=_parse_rate(args.pretax_section125_pct),
+        posttax_flat=max(args.posttax_flat, 0.0),
+        posttax_percent_net=_parse_rate(args.posttax_percent_net),
     )
 
     result = compute_paycheck(
@@ -652,9 +759,27 @@ def main():
             writer = csv.DictWriter(
                 f,
                 fieldnames=[
-                    "gross","taxable_wages_fica","taxable_wages_fit","social_security","medicare",
-                    "federal_income_tax","state_income_tax","total_deductions","net",
-                    "employer_social_security","employer_medicare","employer_total"
+                    "gross",
+                    "taxable_wages_fica",
+                    "taxable_wages_fit",
+                    "social_security",
+                    "medicare",
+                    "federal_income_tax",
+                    "state_income_tax",
+                    "posttax_deductions",
+                    "total_deductions",
+                    "net",
+                    "employer_social_security",
+                    "employer_medicare",
+                    "employer_total",
+                    "regular_hours",
+                    "overtime_hours",
+                    "doubletime_hours",
+                    "regular_pay",
+                    "overtime_pay",
+                    "doubletime_pay",
+                    "effective_employee_tax_rate",
+                    "total_employer_cost",
                 ],
             )
             writer.writeheader()
@@ -675,11 +800,16 @@ def main():
             print("- Federal Income Tax (IRS % method):", f"${result['federal_income_tax']:.2f}")
         if config.state_rate:
             print("- State Income Tax:", f"${result['state_income_tax']:.2f}")
-        print("Total Deductions:", f"${result['total_deductions']:.2f}")
+        print("Total Deductions (incl. post-tax):", f"${result['total_deductions']:.2f}")
+        print("Post-tax Deductions:", f"${result['posttax_deductions']:.2f}")
         print("Net Pay:", f"${result['net']:.2f}")
+        print("Regular Hours / Pay:", f"{result['regular_hours']:.2f}h / ${result['regular_pay']:.2f}")
+        print("Overtime Hours / Pay:", f"{result['overtime_hours']:.2f}h / ${result['overtime_pay']:.2f}")
+        print("Double-time Hours / Pay:", f"{result['doubletime_hours']:.2f}h / ${result['doubletime_pay']:.2f}")
         print("Employer Social Security:", f"${result['employer_social_security']:.2f}")
         print("Employer Medicare:", f"${result['employer_medicare']:.2f}")
         print("Employer Total Payroll Taxes:", f"${result['employer_total']:.2f}")
+        print("Total Employer Cost (wages + ER taxes):", f"${result['total_employer_cost']:.2f}")
         if args.explain:
             print()
             print(build_explanation_text(
