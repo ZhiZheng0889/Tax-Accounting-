@@ -21,8 +21,8 @@ ETHICS_TOPICS: List[StudyTopic] = [
             "When must you disclose uncertain tax positions or advise a client about potential penalties?",
             "How should you document advice, client communications, and positions taken to protect both you and the client?",
             "How do you balance client advocacy with your ethical and legal responsibilities as a tax professional?",
-            "Think of a grey-area scenario—how would these standards guide your response?",
+            "Think of a grey-area scenario. How would these standards guide your response?",
         ],
+        difficulty=2,
     ),
 ]
-

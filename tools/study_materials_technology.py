@@ -14,7 +14,7 @@ TECH_TOPICS: List[StudyTopic] = [
             "specialized apps reshape day-to-day accounting work, client "
             "expectations, and the skills practitioners need to stay relevant. "
             "Think about how your own workflows could change over the next "
-            "3–5 years and what you can do now to prepare."
+            "3-5 years and what you can do now to prepare."
         ),
         focus_questions=[
             "What are the main technology trends affecting accounting today (automation, AI, cloud, data analytics)?",
@@ -23,6 +23,7 @@ TECH_TOPICS: List[StudyTopic] = [
             "What risks (data, security, dependence on vendors) and opportunities (advisory services, efficiency) come with rapid technology change?",
             "If you had to pick one process in your work to re-design with technology, what would it be and why?",
         ],
+        difficulty=3,
     ),
     StudyTopic(
         id="ten_tech_productivity_hacks",
@@ -42,6 +43,6 @@ TECH_TOPICS: List[StudyTopic] = [
             "Where do you experience the most frustration or delay in your current tech setup, and what small change could improve it?",
             "Pick one hack from this session and write down exactly how you will implement it this week.",
         ],
+        difficulty=2,
     ),
 ]
-

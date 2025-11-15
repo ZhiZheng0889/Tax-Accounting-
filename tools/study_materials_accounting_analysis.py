@@ -17,11 +17,12 @@ ACCOUNTING_ANALYSIS_TOPICS: List[StudyTopic] = [
         ),
         focus_questions=[
             "What do managers need to understand about the income statement to interpret performance (revenue quality, margins, trends)?",
-            "How do accruals, deferrals, and estimates (like bad debts or depreciation) affect reported results and decision-making?",
+            "How do accruals, deferrals, and estimates such as bad debts or depreciation affect reported results and decision-making?",
             "Which simple ratios (margin, turnover, leverage) are most useful for non-financial managers, and how should they interpret them?",
-            "How can managers link key performance indicators (KPIs) back to the underlying accounting data?",
-            "Think of a recent decision you or a manager made—how could better use of financial statements have improved that decision?",
+            "How can managers link key performance indicators back to the underlying accounting data?",
+            "Think of a recent decision you or a manager made. How could better use of financial statements have improved that decision?",
         ],
+        difficulty=1,
     ),
     StudyTopic(
         id="analyzing_financial_statements",
@@ -36,11 +37,11 @@ ACCOUNTING_ANALYSIS_TOPICS: List[StudyTopic] = [
         ),
         focus_questions=[
             "How do profitability, liquidity, activity, and leverage ratios work together to give a full picture of a business?",
-            "What can you learn from the cash flow statement that the income statement does not show (quality of earnings, cash sufficiency)?",
-            "Which trends in financial statements signal increasing risk (e.g., leverage, declining margins, deteriorating liquidity)?",
+            "What can you learn from the cash flow statement that the income statement does not show, such as the quality of earnings or cash sufficiency?",
+            "Which trends in financial statements signal increasing risk, for example leverage, declining margins, or deteriorating liquidity?",
             "How would you approach analyzing a new company you have never seen before using these statements?",
             "Choose one ratio you find confusing and write out, in words, what it tells you about a business.",
         ],
+        difficulty=2,
     ),
 ]
-

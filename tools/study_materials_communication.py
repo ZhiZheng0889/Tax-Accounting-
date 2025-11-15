@@ -18,10 +18,10 @@ COMMUNICATION_TOPICS: List[StudyTopic] = [
         focus_questions=[
             "What makes technical content clear rather than confusing (structure, word choice, assumptions about the reader)?",
             "How should you structure a technical explanation so that a busy reader can follow it quickly?",
-            "Which editing steps (shortening sentences, replacing jargon, adding headings) improve readability the most?",
+            "Which editing steps such as shortening sentences, replacing jargon, or adding headings improve readability the most?",
             "How can you use concrete examples or simple diagrams to make abstract concepts understandable?",
-            "Pick one recent email or memo you wrote—how could you rewrite it using these principles?",
+            "Pick one recent email or memo you wrote. How could you rewrite it using these principles?",
         ],
+        difficulty=1,
     ),
 ]
-

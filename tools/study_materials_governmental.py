@@ -19,10 +19,11 @@ GOVERNMENTAL_TOPICS: List[StudyTopic] = [
         focus_questions=[
             "How does governmental accounting differ from commercial GAAP in terms of objectives and users of the information?",
             "What are the main types of governmental, proprietary, and fiduciary funds, and what is the purpose of each?",
-            "Which financial statements are unique to governments (e.g., government-wide vs. fund statements)?",
+            "Which financial statements are unique to governments (for example, government-wide versus fund statements)?",
             "How do measurement focus and basis of accounting differ between government-wide and fund-level reporting?",
             "Where in your own experience have you seen confusion between governmental and commercial accounting concepts?",
         ],
+        difficulty=2,
     ),
     StudyTopic(
         id="gov_accounting_auditing_update",
@@ -30,7 +31,7 @@ GOVERNMENTAL_TOPICS: List[StudyTopic] = [
         category="Governmental Accounting",
         pdf_filename="HANDOUTS Governmental Accounting and Auditing (11-07-2025).pdf",
         description=(
-            "A current snapshot of new and upcoming standards, hot disclosure "
+            "A current snapshot of new and upcoming standards, key disclosure "
             "areas, and practical considerations for year-end close and audit "
             "planning in the governmental environment. This is about translating "
             "technical changes into concrete year-end checklists and talking "
@@ -43,6 +44,6 @@ GOVERNMENTAL_TOPICS: List[StudyTopic] = [
             "How can you proactively communicate year-end issues to governing boards or audit committees?",
             "If you had to design a short year-end checklist for a small government, what would be on it?",
         ],
+        difficulty=3,
     ),
 ]
-
