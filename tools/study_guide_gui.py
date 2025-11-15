@@ -32,6 +32,7 @@ class StudyGuideApp(tk.Tk):
         self._load_state()
         self._ensure_daily_challenge()
         self._build_ui()
+        self._bind_shortcuts()
 
     def _build_ui(self) -> None:
         self.columnconfigure(0, weight=1)
@@ -199,6 +200,11 @@ class StudyGuideApp(tk.Tk):
             btn_frame, text="Quiz Me", command=self._quiz_on_current_topic
         )
         self.btn_quiz.grid(row=1, column=2, sticky="ew", padx=2, pady=(2, 0))
+
+        self.btn_export_notes = ttk.Button(
+            btn_frame, text="Export Notes", command=self._export_all_notes
+        )
+        self.btn_export_notes.grid(row=2, column=0, columnspan=3, sticky="ew", padx=2, pady=(4, 0))
 
         self._update_stats_labels()
 
@@ -397,6 +403,13 @@ class StudyGuideApp(tk.Tk):
         else:
             self.btn_mark_reviewed.config(text="Mark Reviewed")
 
+    def _bind_shortcuts(self) -> None:
+        self.bind("<Control-r>", lambda _event: self._toggle_reviewed())
+        self.bind("<Control-n>", lambda _event: self._jump_to_next_unreviewed())
+        self.bind("<Control-q>", lambda _event: self._quiz_on_current_topic())
+        self.bind("<Control-e>", lambda _event: self._export_all_notes())
+        self.bind("<Control-l>", lambda _event: self._jump_to_random_topic())
+
     def _open_selected_pdf(self) -> None:
         if not self.selected_topic_id:
             messagebox.showinfo("Open PDF", "Select a topic first.")
@@ -463,6 +476,35 @@ class StudyGuideApp(tk.Tk):
             self._persist_state()
             self._update_stats_labels()
         messagebox.showinfo("Notes", "Notes saved.")
+
+    def _export_all_notes(self) -> None:
+        if not self._notes:
+            messagebox.showinfo("Export Notes", "You have no notes to export yet.")
+            return
+        output_path = Path.home() / "study_guide_notes.md"
+        lines: list[str] = []
+        for topic in STUDY_TOPICS:
+            notes = self._notes.get(topic.id, "").strip()
+            if not notes:
+                continue
+            lines.append(f"# {topic.title}")
+            lines.append(f"*Category:* {topic.category}")
+            lines.append(f"*PDF:* {topic.pdf_filename}")
+            lines.append("")
+            lines.append(notes)
+            lines.append("")
+        try:
+            output_path.write_text("\n".join(lines), encoding="utf-8")
+        except Exception as exc:
+            messagebox.showerror(
+                "Export Notes", f"Could not export notes:\n{exc}"
+            )
+            return
+        self._record_study_event(points=5)
+        messagebox.showinfo(
+            "Export Notes",
+            f"Notes exported to:\n{output_path}",
+        )
 
     def _jump_to_random_topic(self) -> None:
         if not STUDY_TOPICS:
