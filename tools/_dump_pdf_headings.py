@@ -1,10 +1,22 @@
+"""Utility for quickly inspecting PDF bookmark outlines or first-page headings."""
+
 from pathlib import Path
+import logging
 
 import pypdf
 
 
+logger = logging.getLogger(__name__)
+
+
 def dump_headings(pdf_dir: Path) -> None:
+    """Print outlines or inferred headings for all PDFs in ``pdf_dir``."""
+
     files = sorted(pdf_dir.glob("*.pdf"))
+    if not files:
+        logger.info("No PDF files found in %s", pdf_dir)
+        return
+
     for path in files:
         print(f"--- FILE: {path.name} ---")
         try:
@@ -38,9 +50,11 @@ def dump_headings(pdf_dir: Path) -> None:
                 else:
                     print("[No pages found]")
         except Exception as exc:
+            logger.exception("Error reading PDF %s", path)
             print("[Error reading PDF]", exc)
         print()
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     dump_headings(Path("PDF"))
