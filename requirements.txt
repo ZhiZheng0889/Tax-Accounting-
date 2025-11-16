@@ -1,0 +1,6 @@
+#
+# Runtime dependencies for the Tax & Accounting tools.
+#
+
+pypdf
+
