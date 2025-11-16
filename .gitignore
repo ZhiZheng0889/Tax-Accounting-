@@ -17,6 +17,7 @@ __pycache__/
 *.pyo
 *.pyd
 *.pyc
+.python-version
 
 # Virtual envs
 .venv/
@@ -27,8 +28,14 @@ ENV/
 build/
 dist/
 *.egg-info/
+*.spec
 
 # Project data
 PDF/
 pdf/
+
+# IDE / editor
+.vscode/
+.idea/
+*.code-workspace
 
