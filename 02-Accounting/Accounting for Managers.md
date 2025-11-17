@@ -3,7 +3,7 @@
 **Category:** Accounting and Analysis
 **PDF:** PDF\handoutsaccountingformanagers091720251757409796755.pdf
 
-## Description
+## Description / context
 
 Introduces non-accountant managers to the language of accounting: how transactions
 become numbers, how those numbers flow into the income statement, balance sheet, and
@@ -20,7 +20,7 @@ decisions.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

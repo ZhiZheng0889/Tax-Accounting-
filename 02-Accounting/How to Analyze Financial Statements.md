@@ -3,7 +3,7 @@
 **Category:** Accounting and Analysis
 **PDF:** PDF\handoutshowtoanalyzefinancialstatements091220251755276924865.pdf
 
-## Description
+## Description / context
 
 Provides a toolkit for reading the balance sheet, income statement, and cash flow
 statement together, using horizontal and vertical analysis plus key ratios to understand
@@ -19,7 +19,7 @@ performance, risk, and cash generation over time.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

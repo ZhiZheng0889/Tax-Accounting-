@@ -3,7 +3,7 @@
 **Category:** Individual Taxation
 **PDF:** PDF\handouts2025taxupdatesforindividuals111420251762457167904.pdf
 
-## Description
+## Description / context
 
 Walks through the latest federal individual tax changes for 2025, including new
 brackets, inflation adjustments, credits, deductions, and planning opportunities or
@@ -20,7 +20,7 @@ earners, retirees, investors, and small business owners.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

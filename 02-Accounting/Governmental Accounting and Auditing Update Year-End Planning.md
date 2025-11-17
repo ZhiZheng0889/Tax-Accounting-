@@ -3,7 +3,7 @@
 **Category:** Governmental Accounting
 **PDF:** PDF\HANDOUTS Governmental Accounting and Auditing (11-07-2025).pdf
 
-## Description
+## Description / context
 
 A current snapshot of new and upcoming standards, key disclosure areas, and practical
 considerations for year-end close and audit planning in the governmental environment.
@@ -20,7 +20,7 @@ talking points with clients or management.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

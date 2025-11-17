@@ -46,16 +46,18 @@ def _guess_root_dir(category: str) -> Path:
     """
 
     cat = category.lower()
-    if "tax" in cat:
+    if "tax" in cat or "ethic" in cat or "practice" in cat:
         return Path("01-Tax")
-    if "account" in cat or "analysis" in cat or "governmental" in cat:
+    if (
+        "account" in cat
+        or "analysis" in cat
+        or "governmental" in cat
+        or "technology" in cat
+        or "productivity" in cat
+        or "communication" in cat
+        or "writing" in cat
+    ):
         return Path("02-Accounting")
-    if "technology" in cat or "productivity" in cat:
-        return Path("04-Templates")
-    if "communication" in cat or "writing" in cat:
-        return Path("03-References")
-    if "ethic" in cat or "practice" in cat:
-        return Path("01-Tax")
     return Path("03-References")
 
 
@@ -63,7 +65,7 @@ def _sanitize_filename(name: str) -> str:
     """Return a filesystem-safe filename stem for Windows/macOS/Linux."""
 
     # Replace characters that are invalid or awkward in filenames.
-    cleaned = re.sub(r'[<>:\"/\\\\|?*]+', " ", name).strip()
+    cleaned = re.sub(r'[<>:\"/\\|?*]+', " ", name).strip()
     cleaned = re.sub(r"\s+", " ", cleaned)
     # Keep filenames a reasonable length.
     if len(cleaned) > 80:
@@ -93,7 +95,7 @@ def generate_note_markdown(topic: StudyTopic) -> str:
     lines.append(f"**PDF:** {topic.pdf_path}")
     lines.append("")
 
-    lines.append("## Description")
+    lines.append("## Description / context")
     lines.append("")
     wrapped_desc = textwrap.fill(topic.description, width=88)
     lines.append(wrapped_desc)
@@ -108,7 +110,10 @@ def generate_note_markdown(topic: StudyTopic) -> str:
 
     lines.append("## Your summary")
     lines.append("")
-    lines.append("Capture the key points from the handout in your own words.")
+    lines.append(
+        "Summarize the main ideas, rules, examples, and any numbers or thresholds "
+        "you want to remember, in your own words."
+    )
     lines.append("")
 
     lines.append("## Key takeaways")
@@ -158,8 +163,7 @@ def _create_reference_index(project_root: Path, overwrite: bool) -> None:
             except ValueError:
                 note_rel = note_path
             lines.append(
-                f"- **{topic.title}** — PDF: `{topic.pdf_path}`; "
-                f"Notes: `{note_rel}`"
+                f"- **{topic.title}** - PDF: `{topic.pdf_path}`; Notes: `{note_rel}`"
             )
         lines.append("")
 
@@ -269,8 +273,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Print planned actions without writing files.",
+        help="Print planned actions without writing any files.",
     )
     args = parser.parse_args()
 
     populate_folders(overwrite=args.overwrite, dry_run=args.dry_run)
+

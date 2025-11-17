@@ -3,7 +3,7 @@
 **Category:** Technology and Productivity
 **PDF:** PDF\handoutstentechproductivitylifehacks102820251760699229725.pdf
 
-## Description
+## Description / context
 
 Presents concrete technology tips, shortcuts, and small workflow changes that can add up
 to significant time savings. The goal is to identify friction in your daily routine and
@@ -19,7 +19,7 @@ systematically remove it using simple tools and habits.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

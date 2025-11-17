@@ -3,7 +3,7 @@
 **Category:** Individual Taxation
 **PDF:** PDF\handoutstaxefficientportfolio102120251759861912134.pdf
 
-## Description
+## Description / context
 
 Focuses on how to sequence withdrawals from taxable, tax-deferred, and tax-free accounts
 over a client's lifetime to reduce overall taxes, manage brackets, and coordinate with
@@ -19,7 +19,7 @@ Social Security, Medicare premiums, and estate planning goals.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

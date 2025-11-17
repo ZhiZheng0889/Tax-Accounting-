@@ -3,7 +3,7 @@
 **Category:** Technology and Productivity
 **PDF:** PDF\HANDOUTS Embracing Technology Change in Accounting (10-30-2025).pdf
 
-## Description
+## Description / context
 
 A big-picture look at how automation, AI, cloud platforms, and specialized apps reshape
 day-to-day accounting work, client expectations, and the skills practitioners need to
@@ -20,7 +20,7 @@ and what you can do now to prepare.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

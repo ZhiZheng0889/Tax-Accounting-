@@ -3,7 +3,7 @@
 **Category:** Individual Taxation
 **PDF:** PDF\handoutspostdeathiratransactions102720251760472451493.pdf
 
-## Description
+## Description / context
 
 Explores the rules for inherited IRAs after the account owner's death, including
 beneficiary categories, distribution requirements, timing rules, and planning options.
@@ -20,7 +20,7 @@ changes alter common strategies.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

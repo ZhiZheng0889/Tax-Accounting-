@@ -3,7 +3,7 @@
 **Category:** Ethics and Practice Management
 **PDF:** PDF\handoutstaxpracticestandards103120251758634751069.pdf
 
-## Description
+## Description / context
 
 Reviews the professional and ethical standards that govern tax practice, including due
 diligence requirements, documentation expectations, reliance on client information, and
@@ -20,7 +20,7 @@ your clients.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

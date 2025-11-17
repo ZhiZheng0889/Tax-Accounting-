@@ -3,7 +3,7 @@
 **Category:** Communication and Writing
 **PDF:** PDF\handoutsfundamentalsoftechnicalwriting110420251761571939104.pdf
 
-## Description
+## Description / context
 
 Covers the essentials of explaining complex ideas clearly: structuring documents,
 choosing precise language, using examples and visuals, and editing for clarity and
@@ -20,7 +20,7 @@ training materials.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 

@@ -3,7 +3,7 @@
 **Category:** Governmental Accounting
 **PDF:** PDF\HANDOUTS Governmental Accounting 101 (10-07-2025).pdf
 
-## Description
+## Description / context
 
 Foundational overview of how governments keep their books, with an emphasis on fund
 structures, the measurement focus and basis of accounting, and the unique reporting
@@ -20,7 +20,7 @@ more advanced governmental topics.
 
 ## Your summary
 
-Capture the key points from the handout in your own words.
+Summarize the main ideas, rules, examples, and any numbers or thresholds you want to remember, in your own words.
 
 ## Key takeaways
 
