@@ -74,10 +74,16 @@ def _sanitize_filename(name: str) -> str:
 
 
 def _note_path(project_root: Path, topic: StudyTopic) -> Path:
-    """Return the target Markdown note path for a topic."""
+    """Return the target Markdown note path for a topic.
+
+    Notes are stored under a top-level folder (01-Tax, 02-Accounting, or
+    03-References) and then grouped by the topic's category to keep
+    related webinars together.
+    """
 
     root_dir = _guess_root_dir(topic.category)
-    target_dir = project_root / root_dir
+    category_dir_name = _sanitize_filename(topic.category)
+    target_dir = project_root / root_dir / category_dir_name
     target_dir.mkdir(parents=True, exist_ok=True)
 
     stem = _sanitize_filename(topic.title)
@@ -278,4 +284,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     populate_folders(overwrite=args.overwrite, dry_run=args.dry_run)
-
