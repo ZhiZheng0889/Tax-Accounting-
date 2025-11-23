@@ -136,7 +136,9 @@ def generate_note_markdown(topic: StudyTopic) -> str:
     return "\n".join(lines)
 
 
-def _create_reference_index(project_root: Path, overwrite: bool) -> None:
+def _create_reference_index(
+    project_root: Path, overwrite: bool, topics: Optional[List[StudyTopic]] = None
+) -> None:
     """Create or update a Markdown index of all study topics."""
 
     ref_dir = project_root / "03-References"
@@ -146,8 +148,10 @@ def _create_reference_index(project_root: Path, overwrite: bool) -> None:
     if index_path.exists() and not overwrite:
         return
 
+    topics = topics or STUDY_TOPICS
+
     by_category: Dict[str, List[StudyTopic]] = {}
-    for topic in STUDY_TOPICS:
+    for topic in topics:
         by_category.setdefault(topic.category, []).append(topic)
 
     lines: List[str] = []
@@ -228,6 +232,7 @@ def populate_folders(
     *,
     overwrite: bool = False,
     dry_run: bool = False,
+    categories: Optional[List[str]] = None,
 ) -> None:
     """Populate the top-level note folders based on the study topics.
 
@@ -237,8 +242,18 @@ def populate_folders(
     """
 
     project_root = base_dir or Path(__file__).resolve().parents[1]
+    allowed_categories = (
+        {c.lower() for c in categories} if categories else None
+    )
 
-    for topic in STUDY_TOPICS:
+    def should_include(topic: StudyTopic) -> bool:
+        if not allowed_categories:
+            return True
+        return topic.category.lower() in allowed_categories
+
+    topics = [t for t in STUDY_TOPICS if should_include(t)]
+
+    for topic in topics:
         note_path = _note_path(project_root, topic)
         rel_path = note_path.relative_to(project_root)
 
@@ -255,7 +270,7 @@ def populate_folders(
         print(f"Wrote {rel_path}")
 
     if not dry_run:
-        _create_reference_index(project_root, overwrite=overwrite)
+        _create_reference_index(project_root, overwrite=overwrite, topics=topics)
         _create_templates(project_root, overwrite=overwrite)
 
 
