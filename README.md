@@ -111,3 +111,12 @@ python tools/_dump_pdf_headings.py
 
 This is useful for quickly seeing what a handout covers before creating notes or topics.
 
+Testing
+-------
+
+Run the small test suite with:
+
+```bash
+python -m pytest
+```
+
