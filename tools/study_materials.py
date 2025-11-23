@@ -238,7 +238,8 @@ def populate_folders(
 
     This creates Markdown note files for each webinar topic and a simple
     index in ``03-References``. Existing files are left untouched unless
-    ``overwrite=True`` is passed.
+    ``overwrite=True`` is passed. Pass ``categories`` to restrict generation
+    to specific categories.
     """
 
     project_root = base_dir or Path(__file__).resolve().parents[1]
@@ -296,6 +297,15 @@ if __name__ == "__main__":
         action="store_true",
         help="Print planned actions without writing any files.",
     )
+    parser.add_argument(
+        "--category",
+        action="append",
+        help="Limit generation to one or more categories (can repeat).",
+    )
     args = parser.parse_args()
 
-    populate_folders(overwrite=args.overwrite, dry_run=args.dry_run)
+    populate_folders(
+        overwrite=args.overwrite,
+        dry_run=args.dry_run,
+        categories=args.category,
+    )
