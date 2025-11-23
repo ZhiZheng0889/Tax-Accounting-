@@ -1,7 +1,8 @@
 """Utility for quickly inspecting PDF bookmark outlines or first-page headings."""
 
-from pathlib import Path
+import argparse
 import logging
+from pathlib import Path
 
 import pypdf
 
@@ -57,4 +58,16 @@ def dump_headings(pdf_dir: Path) -> None:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-    dump_headings(Path("PDF"))
+
+    parser = argparse.ArgumentParser(
+        description="Print outlines or first lines for PDFs in a directory."
+    )
+    parser.add_argument(
+        "directory",
+        nargs="?",
+        default="PDF",
+        help="Folder to scan for PDF files (default: PDF).",
+    )
+    args = parser.parse_args()
+
+    dump_headings(Path(args.directory))
