@@ -10,7 +10,7 @@ Structure
 
 Suggested conventions
 - File names: `YYYY-MM-DD Topic - Detail.docx` (e.g., `2025-11-12 Depreciation - MACRS basis.docx`).
-- Keep short “index” docs in each folder to summarize what is inside (e.g., `Index.docx`).
+- Keep short "index" docs in each folder to summarize what is inside (e.g., `Index.docx`).
 - Drop working drafts in the right folder first; refine structure as content grows.
 
 Notes
@@ -71,8 +71,8 @@ Overtime basics (U.S. FLSA)
 - Some states (e.g., California) impose daily overtime or double-time; this tool does not automatically apply those. Enter such hours as `--overtime-hours` with an appropriate `--overtime-multiplier` (e.g., 2.0 for double-time).
 
 Overtime examples
-- $20/hr, 45 hours in the week: Gross = 40×$20 + 5×$20×1.5 = $950.
-- $30/hr, 50 hours: Gross = 40×$30 + 10×$30×1.5 = $1,650.
+- $20/hr, 45 hours in the week: Gross = 40 * $20 + 5 * $20 * 1.5 = $950.
+- $30/hr, 50 hours: Gross = 40 * $30 + 10 * $30 * 1.5 = $1,650.
 
 Study guide (GUI)
 -----------------
@@ -85,11 +85,11 @@ The study guide helps you track progress across webinar handouts stored in the `
 
 Features
 - Categorized tree of topics (tax, accounting, technology, ethics, communication).
-- One-click “Open PDF” for the selected topic (uses your OS default PDF viewer).
+- One-click "Open PDF" for the selected topic (uses your OS default PDF viewer).
 - Notes panel with per-topic notes saved to `~/.study_guide_progress.json`.
 - Gamified score, streak counter, levels, and badges.
-- Daily challenge topic and “Quiz Me” button using focus questions.
-- “Export Notes” to `~/study_guide_notes.md` for review.
+- Daily challenge topic and "Quiz Me" button using focus questions.
+- "Export Notes" to `~/study_guide_notes.md` for review.
 
 PDF helper
 ----------
