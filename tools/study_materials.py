@@ -38,6 +38,15 @@ STUDY_TOPICS: List[StudyTopic] = (
 )
 
 
+def _filter_topics(categories: Optional[List[str]] = None) -> List[StudyTopic]:
+    """Return topics limited to the provided categories (case-insensitive)."""
+
+    allowed = {c.lower() for c in categories} if categories else None
+    if not allowed:
+        return list(STUDY_TOPICS)
+    return [t for t in STUDY_TOPICS if t.category.lower() in allowed]
+
+
 def _guess_root_dir(category: str) -> Path:
     """Map a topic category to a top-level folder.
 
@@ -243,16 +252,7 @@ def populate_folders(
     """
 
     project_root = base_dir or Path(__file__).resolve().parents[1]
-    allowed_categories = (
-        {c.lower() for c in categories} if categories else None
-    )
-
-    def should_include(topic: StudyTopic) -> bool:
-        if not allowed_categories:
-            return True
-        return topic.category.lower() in allowed_categories
-
-    topics = [t for t in STUDY_TOPICS if should_include(t)]
+    topics = _filter_topics(categories)
 
     for topic in topics:
         note_path = _note_path(project_root, topic)
