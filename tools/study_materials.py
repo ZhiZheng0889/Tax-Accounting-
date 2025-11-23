@@ -302,7 +302,17 @@ if __name__ == "__main__":
         action="append",
         help="Limit generation to one or more categories (can repeat).",
     )
+    parser.add_argument(
+        "--list-topics",
+        action="store_true",
+        help="List topics that match the filters and exit.",
+    )
     args = parser.parse_args()
+
+    if args.list_topics:
+        for topic in _filter_topics(args.category):
+            print(f"[{topic.category}] {topic.title} -> {topic.pdf_path}")
+        raise SystemExit(0)
 
     populate_folders(
         overwrite=args.overwrite,
