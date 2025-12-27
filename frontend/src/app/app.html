@@ -1,0 +1,29 @@
+﻿<main class="shell">
+  <header class="header">
+    <h1>Tax & Accounting Study Browser</h1>
+    <p class="sub">Angular + .NET API over your existing Markdown notes</p>
+  </header>
+
+  <section class="status" *ngIf="loading">Loading materials</section>
+  <section class="status error" *ngIf="error">{{ error }}</section>
+
+  <section class="grid" *ngIf="!loading">
+    <aside class="list">
+      <h2>Materials</h2>
+      <ul>
+        <li *ngFor="let item of materials">
+          <button type="button" (click)="open(item)">
+            <span class="title">{{ item.title }}</span>
+            <span class="meta">{{ item.category }}</span>
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <article class="viewer">
+      <h2 *ngIf="selected">{{ selected.title }}</h2>
+      <p class="hint" *ngIf="!selected">Select a note to view its Markdown.</p>
+      <pre class="markdown" *ngIf="selected">{{ selected.markdown }}</pre>
+    </article>
+  </section>
+</main>

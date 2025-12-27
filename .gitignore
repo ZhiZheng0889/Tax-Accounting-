@@ -30,6 +30,16 @@ dist/
 *.egg-info/
 *.spec
 
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# .NET
+**/bin/
+**/obj/
+
 # Project data
 PDF/
 pdf/
