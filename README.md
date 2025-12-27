@@ -20,6 +20,39 @@ Notes
 Python tools
 ============
 
+Full-stack (Angular + .NET)
+===========================
+
+This repo now includes a minimal full-stack sample to match common entry-level requirements (Angular SPA + C#/.NET Web API + unit/integration tests + CI).
+
+- Backend: `backend/TaxAccounting.Api` (ASP.NET Core, .NET 8)
+- Frontend: `frontend` (Angular)
+
+Local run (2 terminals)
+-----------------------
+
+Backend:
+
+```bash
+dotnet run --project backend/TaxAccounting.Api
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+The Angular dev server proxies `/api/*` to `http://localhost:5206` via `frontend/proxy.conf.json`.
+
+Notes
+-----
+
+- If you just installed the .NET SDK on Windows, you may need to restart your terminal/VS Code so `dotnet` is available on PATH.
+- Node LTS is recommended for real projects (odd-numbered Node releases are not LTS).
+
 Requirements
 - Python 3.10+
 - Dependencies in `requirements.txt` (currently just `pypdf` for PDF helpers).
