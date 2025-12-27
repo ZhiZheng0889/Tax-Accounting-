@@ -25,6 +25,14 @@ Full-stack (Angular + .NET)
 
 This repo now includes a minimal full-stack sample to match common entry-level requirements (Angular SPA + C#/.NET Web API + unit/integration tests + CI).
 
+Resume highlights
+-----------------
+
+- Built an Angular (TypeScript) SPA that consumes a REST API and displays real content from the repository's Markdown study notes.
+- Implemented a .NET 8 ASP.NET Core Web API that scans `01-Tax/`, `02-Accounting/`, and `03-References/` and serves note metadata and Markdown content.
+- Added automated testing: xUnit integration tests for API endpoints + Angular unit tests.
+- Set up CI with GitHub Actions for Python tools, .NET build/test, and Angular build/test.
+
 - Backend: `backend/TaxAccounting.Api` (ASP.NET Core, .NET 8)
 - Frontend: `frontend` (Angular)
 
