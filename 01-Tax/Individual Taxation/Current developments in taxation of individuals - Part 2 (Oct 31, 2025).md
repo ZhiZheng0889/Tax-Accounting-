@@ -114,3 +114,27 @@ No single factor controls; weigh them collectively:
 - What would you point to as “operated in a businesslike manner” evidence?
 - If losses have run for 5+ years, what specific operational changes were made?
 - If the taxpayer has high outside income, what counters the “tax shelter” narrative?
+
+---
+
+## Sec. 213 — Medical expenses: IVF allowed; gestational surrogacy denied (in ruling)
+
+### Core rule to remember
+
+Medical expenses are deductible only if they are for “medical care” of the taxpayer, spouse, or a dependent (and subject to the $7.5\%$ of AGI floor).
+
+### Development highlighted
+
+- **Letter Ruling 202518023 (Feb. 4, 2025)**: The IRS allowed medical expense deductions for IVF-related items in the fact pattern (e.g., screenings, fertility medications and treatment, egg and sperm retrieval). The IRS denied a deduction for expenses related to **gestational surrogacy** because those costs were not for the medical care of the taxpayers or a dependent under Sec. 213(a).
+
+### Practice takeaways
+
+- Separate invoices and categorize costs early: IVF medical procedures/medications vs third-party arrangement costs.
+- Confirm “whose medical care” is being paid for. If the care is provided to a nondependent third party, the Sec. 213 path may be blocked.
+- Remember the AGI floor: even “qualified” expenses may not yield a deduction depending on AGI.
+
+### Client interview prompts
+
+- Who received the procedures and whose name is on the bills?
+- Are any costs for legal contracts, agency fees, or compensation unrelated to medical procedures?
+- Do you expect to clear the $7.5\%$ AGI threshold this year, or should you consider bunching eligible expenses?
