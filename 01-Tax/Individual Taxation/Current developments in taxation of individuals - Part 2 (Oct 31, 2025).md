@@ -308,3 +308,36 @@ Joint filers are jointly and severally liable, but Sec. 6015 can provide relief 
 - What did you know about the other spouse’s income sources at filing time?
 - When did the IRS first begin collecting (levy notice, refund offset, payment demand)?
 - Would paying the liability cause economic hardship? Can you document it?
+
+---
+
+## Practice set (use without notes)
+
+### 12 flashcards (Q → A)
+
+1. **Sec. 172**: What is the recurring theme in NOL litigation? → Substantiation of originating-year loss amount and carryforward tracking.
+2. **Sec. 172**: What is usually not enough by itself to prove an NOL? → A self-prepared schedule/table without underlying return support.
+3. **Sec. 183**: What is the governing test? → Facts-and-circumstances using the nine regulatory factors; no single factor controls.
+4. **Sec. 183**: Name two “businesslike manner” indicators. → Separate books/accounts; documented changes to improve profitability.
+5. **Sec. 213**: IVF expenses may be deductible if… → They are for medical care of the taxpayer/spouse/dependent and exceed the AGI floor.
+6. **Sec. 213**: Why might surrogacy-related expenses be denied? → They may not be for the taxpayers’ (or a dependent’s) medical care.
+7. **Sec. 217(g)**: Who can still deduct moving expenses (generally)? → Active-duty Armed Forces members moving under qualifying orders/PCS.
+8. **Sec. 401**: What is the “Roth catch-up requirement” conceptually? → Certain high-wage participants must treat catch-up contributions as Roth.
+9. **Sec. 469**: When can passive credits be unusable currently? → When there’s no passive income/tax liability to absorb them.
+10. **Sec. 1256**: Even if Sec. 1256 applies, what can still block a loss? → Sec. 165(c) profit motive limitations for individuals.
+11. **Secs. 1401–1402**: What drives the “limited partner” analysis? → Functional role (services/management/time), not the label.
+12. **Sec. 6015**: What is a common reason Sec. 6015(b) fails? → Actual knowledge/reason to know of the understatement.
+
+### 5 mini-scenarios (issue spot)
+
+1. Client claims a 2016 NOL carryover using only a spreadsheet they created last week. What do you request first?
+2. High-income client shows horses; activity has 12 years of losses and minimal sales. Which Sec. 183 factors are most dangerous?
+3. Married couple pays IVF clinic invoices and also pays an agency fee for a surrogate. How do you triage Sec. 213 deductibility?
+4. Client buys into a solar partnership marketed as “credits will erase your tax.” What Sec. 469 questions do you ask before the client signs?
+5. Divorced spouse asks for innocent spouse relief after the IRS begins offsets. What dates and documents do you gather immediately?
+
+### 3 “client-facing” one-liners
+
+- **NOLs**: “If we can’t prove the original loss with returns/workpapers, the carryover is at risk.”
+- **Hobby loss**: “If it isn’t run like a business and never makes money, the IRS may treat it as a hobby—losses won’t offset other income.”
+- **Innocent spouse**: “Relief depends heavily on what you knew when you signed and how quickly you requested help after IRS collection started.”
