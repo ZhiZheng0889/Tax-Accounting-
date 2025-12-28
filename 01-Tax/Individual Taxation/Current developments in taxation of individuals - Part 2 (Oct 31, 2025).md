@@ -188,3 +188,27 @@ Proposed rules under Sec. 414(v)(7)(A) address the “Roth catch-up requirement�
 - Titling is everything: inherited IRA setup must preserve “decedent for benefit of beneficiary” naming.
 - Trustee-to-trustee transfer mechanics reduce distribution/rollover errors.
 - Always coordinate trust terms + beneficiary categories + distribution timing rules before moving assets.
+
+---
+
+## Sec. 469 — Passive activity credit limits: why investment credits can be disallowed
+
+### Core rule to remember
+
+Passive activity credits generally can only offset **tax attributable to passive activities**. If the taxpayer has no passive income/tax liability allocable to passive activities, the passive activity credit may be disallowed (and potentially carried forward).
+
+### Development highlighted
+
+- **Strieby (Tax Ct.)**: Taxpayers claimed investment tax credits tied to a solar LLC investment. The court explained that the Sec. 48 “investment tax credit” is a component within the Sec. 38 general business credit, which is treated as a passive activity credit under Sec. 469(d)(2). Because the taxpayers did not materially participate and had no passive income, the credits were limited/disallowed under Sec. 469.
+
+### Practice takeaways
+
+- When clients buy into credit-driven deals, ask *first*: will the credit be passive for them? Do they have passive income/tax to absorb it?
+- “Signing documents and writing checks” is typically not material participation.
+- Expect IRS scrutiny when documentation is inconsistent (missing partnership filings, missing forms like Form 3468/3800, mismatched K-1 numbers).
+
+### Quick diagnostic questions
+
+- Is the activity a trade/business the taxpayer materially participates in?
+- If not, does the taxpayer have other passive income this year to absorb credits?
+- Are all required credit forms and partnership reporting present and internally consistent?
