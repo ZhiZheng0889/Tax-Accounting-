@@ -212,3 +212,26 @@ Passive activity credits generally can only offset **tax attributable to passive
 - Is the activity a trade/business the taxpayer materially participates in?
 - If not, does the taxpayer have other passive income this year to absorb credits?
 - Are all required credit forms and partnership reporting present and internally consistent?
+
+---
+
+## Sec. 1256 — Section 1256 contracts: mark-to-market meets the individual loss limits
+
+### Core rule to remember
+
+Sec. 1256 generally marks certain contracts to market at year end and characterizes gain/loss under its special rules. But individuals still face the baseline limitation that personal losses are not deductible unless they fit within Sec. 165(c) (profit-motivated transaction, trade/business, etc.).
+
+### Development highlighted
+
+- **Wright (Tax Ct., after remand)**: The dispute involved an OTC foreign currency option entered into by an LLC owned by the taxpayers and later assigned, generating a claimed loss. After the Sixth Circuit held the option could qualify as a foreign currency contract under Sec. 1256, the Tax Court on remand still denied the deduction because the transaction was not entered into with a primary profit motive under Sec. 165(c).
+
+### Practice takeaways
+
+- Even if you win a “technical classification” issue (e.g., Sec. 1256 treatment), you can still lose on the threshold question: was this a deductible-loss transaction for an individual?
+- When a loss position looks “manufactured” or non-economic, expect profit motive scrutiny and document the business/investment rationale.
+- Build the file early: contemporaneous trading strategy notes, risk management docs, and evidence of expected economic return.
+
+### Exam-style prompts
+
+- If a taxpayer has a transaction that qualifies under Sec. 1256, what additional hurdle might still deny the loss?
+- What facts would you look for to support profit motive (vs personal/other motives) in a derivatives transaction?
