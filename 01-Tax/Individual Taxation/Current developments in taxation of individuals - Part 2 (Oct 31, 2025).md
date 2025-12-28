@@ -36,3 +36,40 @@ After working this guide, you should be able to:
 - Sec. 6015 — Innocent spouse relief (granted and denied cases)
 
 > Note: This is a study aid written in original language. Use it to reinforce understanding; consult primary authority for advice.
+
+---
+
+## Sec. 172 — Net operating loss (NOL) deduction: substantiation matters
+
+### Core rule to remember
+
+An NOL carryover/carryforward is not “self-proving.” The taxpayer bears the burden to establish:
+
+- The fact of the loss in the originating year(s)
+- The amount of the loss
+- That the loss was properly carried to the year at issue (and not already absorbed)
+
+### Developments highlighted
+
+- **Kinney (9th Cir.)**: A handwritten table + testimony, without underlying return support, was not enough to substantiate an NOL carryover.
+- **Mosley (Tax Ct.)**: NOL carryforward disallowed where the taxpayer could not document the originating loss calculation and failed to make a timely election affecting carryback/carryforward treatment.
+
+### Practice takeaways
+
+- Treat NOLs like a “paper trail” project: keep the originating-year returns, workpapers, and any amendments.
+- Reconstructing an NOL years later is hard; courts tend to expect contemporaneous records.
+- If an election is required (e.g., to waive a carryback period when applicable), confirm it was made correctly and on time.
+
+### Quick self-check questions
+
+- What documents would you need to prove the originating-year loss amount?
+- How would you show the NOL was not previously used up?
+- If the IRS challenges the carryover, what is your best evidence: schedules, transcripts, copies of returns, or something else?
+
+### Mini-checklist (client file)
+
+- Copy of original return(s) for NOL year(s)
+- Workpapers computing NOL (including modifications/limitations)
+- Carryforward schedule year-by-year showing absorption
+- IRS account transcripts (helpful corroboration)
+- Proof of any elections (and date/time filed)
