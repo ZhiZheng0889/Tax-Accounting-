@@ -8,6 +8,10 @@ Structure
 - `03-References`: Authoritative references (IRS pubs, state regs), links, PDFs.
 - `04-Templates`: Note templates, checklists, workpaper formats for reuse.
 
+Quick links
+- `03-References/Study Webinars Index.md` (auto-generated)
+- `03-References/Study Guides Index.md` (Markdown-only study guides)
+
 Suggested conventions
 - File names: `YYYY-MM-DD Topic - Detail.docx` (e.g., `2025-11-12 Depreciation - MACRS basis.docx`).
 - Keep short "index" docs in each folder to summarize what is inside (e.g., `Index.docx`).
