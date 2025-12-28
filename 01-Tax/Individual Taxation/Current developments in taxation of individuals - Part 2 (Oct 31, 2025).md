@@ -212,3 +212,153 @@ Passive activity credits generally can only offset **tax attributable to passive
 - Is the activity a trade/business the taxpayer materially participates in?
 - If not, does the taxpayer have other passive income this year to absorb credits?
 - Are all required credit forms and partnership reporting present and internally consistent?
+
+---
+
+## Sec. 1256 — Section 1256 contracts: mark-to-market meets the individual loss limits
+
+### Core rule to remember
+
+Sec. 1256 generally marks certain contracts to market at year end and characterizes gain/loss under its special rules. But individuals still face the baseline limitation that personal losses are not deductible unless they fit within Sec. 165(c) (profit-motivated transaction, trade/business, etc.).
+
+### Development highlighted
+
+- **Wright (Tax Ct., after remand)**: The dispute involved an OTC foreign currency option entered into by an LLC owned by the taxpayers and later assigned, generating a claimed loss. After the Sixth Circuit held the option could qualify as a foreign currency contract under Sec. 1256, the Tax Court on remand still denied the deduction because the transaction was not entered into with a primary profit motive under Sec. 165(c).
+
+### Practice takeaways
+
+- Even if you win a “technical classification” issue (e.g., Sec. 1256 treatment), you can still lose on the threshold question: was this a deductible-loss transaction for an individual?
+- When a loss position looks “manufactured” or non-economic, expect profit motive scrutiny and document the business/investment rationale.
+- Build the file early: contemporaneous trading strategy notes, risk management docs, and evidence of expected economic return.
+
+### Exam-style prompts
+
+- If a taxpayer has a transaction that qualifies under Sec. 1256, what additional hurdle might still deny the loss?
+- What facts would you look for to support profit motive (vs personal/other motives) in a derivatives transaction?
+
+---
+
+## Secs. 1401–1402 — Self-employment tax: characterization and the “limited partner” exception
+
+### A. Sec. 1401 rate / recharacterization: prior IRS refund is not a concession
+
+#### Development highlighted
+
+- **Clark (Tax Ct.)**: Taxpayer treated recurring business income as “other income” not subject to SE tax. The IRS reversed a premature SE tax assessment during pending litigation and refunded, but the Tax Court still held the taxpayer liable for SE tax on the income.
+
+#### Practice takeaways
+
+- A procedural refund (fixing an account during litigation) is not a substantive concession about taxability.
+- If facts show the taxpayer is carrying on a trade/business, SE tax exposure remains even if the return labels it otherwise.
+- For mixed activities (writing, online sales, gig work), maintain clear books and document whether the activity is ongoing, profit-oriented, and regular.
+
+### B. Sec. 1402 definitions: who is really a “limited partner” for SE tax purposes?
+
+#### Core rule to remember
+
+Sec. 1402(a)(13) provides an exception for a limited partner’s distributive share (with important nuances). The Tax Court continues to apply a functional analysis: labels in the partnership agreement are not controlling.
+
+#### Development highlighted
+
+- **Denham Capital Management (Tax Ct.)**: Partners in a private equity firm were “limited in name only.” Despite the limited partnership form, the individuals devoted substantially all time to the business, were integral to generating fees, and engaged in management decisions. Their distributive shares were included in net earnings from self-employment.
+
+#### Practice takeaways
+
+- Expect a role-based inquiry: time commitment, decision authority, client/service work, and whether distributions are really compensation for services.
+- If only one partner contributes capital but multiple partners receive large “distributions,” be prepared to explain the economic deal and service component.
+- Review how guaranteed payments, salary-like policies, and operational responsibilities align with the SE tax position.
+
+### Quick diagnostic questions
+
+- Is the taxpayer providing services to the partnership’s customers/portfolio, or primarily investing capital?
+- Does the partnership agreement require substantial time and attention?
+- Are “distributions” economically tied to labor (fees/services) rather than capital at risk?
+
+---
+
+## Sec. 6015 — Relief from joint-and-several liability: when it’s granted vs denied
+
+### Core rule to remember
+
+Joint filers are jointly and severally liable, but Sec. 6015 can provide relief via:
+
+- **(b)** Traditional innocent spouse relief (timely request required; no knowledge/reason to know)
+- **(c)** Separate liability election (often for divorced/separated spouses; allocates underpayment)
+- **(f)** Equitable relief (facts-and-circumstances balancing; different timing rules)
+
+### Relief granted (pattern)
+
+- **Stewart (Tax Ct.)**: Relief under Sec. 6015(c) allowed where spouses had separated, maintained separate finances, the requesting spouse had no insight into the other spouse’s business income, and had no reason to know of the unreported items—even though the return was prepared using consumer software.
+
+### Relief denied (common failure points)
+
+- **Gomez (Tax Ct.)**: Sec. 6015(b)/(c) relief denied due to a missed 2-year deadline measured from IRS collection activity; equitable relief under (f) also denied because knowledge of the underlying income item outweighed favorable factors.
+- **Franco (Tax Ct.)**: Equitable relief denied where the taxpayer did not substantiate economic hardship and the court found she was at least on notice of issues; claims of threats/abuse were not sufficiently supported in the record.
+- **Lucas (Tax Ct.)**: Sec. 6015(b) denied because the requesting spouse had actual knowledge—she prepared the return and omitted known wages (hers and spouse’s), so she could not establish the required lack of knowledge.
+
+### Practice takeaways
+
+- Timing matters: when applicable, calendar the 2-year deadline from the first meaningful IRS collection action.
+- “Knowledge” is the recurring battleground. Preparing the return yourself or signing with obvious omissions is difficult to overcome.
+- For (f) equitable relief, be ready to document monthly living expenses (hardship) and facts supporting abuse/duress if claimed.
+
+### Client interview prompts (fast)
+
+- Who prepared the return, and what did you review before signing?
+- What did you know about the other spouse’s income sources at filing time?
+- When did the IRS first begin collecting (levy notice, refund offset, payment demand)?
+- Would paying the liability cause economic hardship? Can you document it?
+
+---
+
+## Practice set (use without notes)
+
+### 12 flashcards (Q → A)
+
+1. **Sec. 172**: What is the recurring theme in NOL litigation? → Substantiation of originating-year loss amount and carryforward tracking.
+2. **Sec. 172**: What is usually not enough by itself to prove an NOL? → A self-prepared schedule/table without underlying return support.
+3. **Sec. 183**: What is the governing test? → Facts-and-circumstances using the nine regulatory factors; no single factor controls.
+4. **Sec. 183**: Name two “businesslike manner” indicators. → Separate books/accounts; documented changes to improve profitability.
+5. **Sec. 213**: IVF expenses may be deductible if… → They are for medical care of the taxpayer/spouse/dependent and exceed the AGI floor.
+6. **Sec. 213**: Why might surrogacy-related expenses be denied? → They may not be for the taxpayers’ (or a dependent’s) medical care.
+7. **Sec. 217(g)**: Who can still deduct moving expenses (generally)? → Active-duty Armed Forces members moving under qualifying orders/PCS.
+8. **Sec. 401**: What is the “Roth catch-up requirement” conceptually? → Certain high-wage participants must treat catch-up contributions as Roth.
+9. **Sec. 469**: When can passive credits be unusable currently? → When there’s no passive income/tax liability to absorb them.
+10. **Sec. 1256**: Even if Sec. 1256 applies, what can still block a loss? → Sec. 165(c) profit motive limitations for individuals.
+11. **Secs. 1401–1402**: What drives the “limited partner” analysis? → Functional role (services/management/time), not the label.
+12. **Sec. 6015**: What is a common reason Sec. 6015(b) fails? → Actual knowledge/reason to know of the understatement.
+
+### 5 mini-scenarios (issue spot)
+
+1. Client claims a 2016 NOL carryover using only a spreadsheet they created last week. What do you request first?
+2. High-income client shows horses; activity has 12 years of losses and minimal sales. Which Sec. 183 factors are most dangerous?
+3. Married couple pays IVF clinic invoices and also pays an agency fee for a surrogate. How do you triage Sec. 213 deductibility?
+4. Client buys into a solar partnership marketed as “credits will erase your tax.” What Sec. 469 questions do you ask before the client signs?
+5. Divorced spouse asks for innocent spouse relief after the IRS begins offsets. What dates and documents do you gather immediately?
+
+### 3 “client-facing” one-liners
+
+- **NOLs**: “If we can’t prove the original loss with returns/workpapers, the carryover is at risk.”
+- **Hobby loss**: “If it isn’t run like a business and never makes money, the IRS may treat it as a hobby—losses won’t offset other income.”
+- **Innocent spouse**: “Relief depends heavily on what you knew when you signed and how quickly you requested help after IRS collection started.”
+
+---
+
+## One-page cheat sheet (what to remember on exam day)
+
+### Most common “why the taxpayer lost” themes in this update
+
+- **Missing records**: No underlying documents to support a number (Sec. 172; Sec. 6015 hardship).
+- **Labels don’t control**: Courts look at the real-world function (Sec. 1402 limited partner).
+- **Profit motive is a gatekeeper**: Even when a rule could apply, profit motive can still block a deduction (Sec. 165(c) overlay).
+- **Process/timing matters**: Procedural posture (deadlines, who prepared/what was reviewed) can decide outcomes (Sec. 217; Sec. 6015).
+
+### Evidence checklist by topic
+
+- **NOL (Sec. 172)**: Origin-year returns + NOL computation + year-by-year absorption schedule + transcripts.
+- **Hobby loss (Sec. 183)**: Business plan + separate accounts + marketing/pricing records + time logs + evidence of changes.
+- **Medical (Sec. 213)**: Itemized invoices + proof of whose medical care + allocation separating medical vs nonmedical costs.
+- **Moving (Sec. 217)**: Active-duty status proof + PCS orders (if claiming the exception).
+- **Passive credits (Sec. 469)**: K-1 support + Forms 3800/3468 + participation facts + passive income picture.
+- **SE tax (Secs. 1401–1402)**: Role/responsibility documentation + agreement terms + capital contributions vs service compensation.
+- **Innocent spouse (Sec. 6015)**: Timeline of IRS collection actions + what was known at signing + hardship budget support.
