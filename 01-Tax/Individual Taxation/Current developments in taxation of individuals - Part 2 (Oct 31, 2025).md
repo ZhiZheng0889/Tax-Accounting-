@@ -341,3 +341,24 @@ Joint filers are jointly and severally liable, but Sec. 6015 can provide relief 
 - **NOLs**: “If we can’t prove the original loss with returns/workpapers, the carryover is at risk.”
 - **Hobby loss**: “If it isn’t run like a business and never makes money, the IRS may treat it as a hobby—losses won’t offset other income.”
 - **Innocent spouse**: “Relief depends heavily on what you knew when you signed and how quickly you requested help after IRS collection started.”
+
+---
+
+## One-page cheat sheet (what to remember on exam day)
+
+### Most common “why the taxpayer lost” themes in this update
+
+- **Missing records**: No underlying documents to support a number (Sec. 172; Sec. 6015 hardship).
+- **Labels don’t control**: Courts look at the real-world function (Sec. 1402 limited partner).
+- **Profit motive is a gatekeeper**: Even when a rule could apply, profit motive can still block a deduction (Sec. 165(c) overlay).
+- **Process/timing matters**: Procedural posture (deadlines, who prepared/what was reviewed) can decide outcomes (Sec. 217; Sec. 6015).
+
+### Evidence checklist by topic
+
+- **NOL (Sec. 172)**: Origin-year returns + NOL computation + year-by-year absorption schedule + transcripts.
+- **Hobby loss (Sec. 183)**: Business plan + separate accounts + marketing/pricing records + time logs + evidence of changes.
+- **Medical (Sec. 213)**: Itemized invoices + proof of whose medical care + allocation separating medical vs nonmedical costs.
+- **Moving (Sec. 217)**: Active-duty status proof + PCS orders (if claiming the exception).
+- **Passive credits (Sec. 469)**: K-1 support + Forms 3800/3468 + participation facts + passive income picture.
+- **SE tax (Secs. 1401–1402)**: Role/responsibility documentation + agreement terms + capital contributions vs service compensation.
+- **Innocent spouse (Sec. 6015)**: Timeline of IRS collection actions + what was known at signing + hardship budget support.
