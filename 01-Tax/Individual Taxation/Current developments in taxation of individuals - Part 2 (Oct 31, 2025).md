@@ -73,3 +73,44 @@ An NOL carryover/carryforward is not “self-proving.” The taxpayer bears the 
 - Carryforward schedule year-by-year showing absorption
 - IRS account transcripts (helpful corroboration)
 - Proof of any elections (and date/time filed)
+
+---
+
+## Sec. 183 — Activities not engaged in for profit (the “hobby loss” rules)
+
+### Core rule to remember
+
+If an activity is not engaged in for profit, deductions are limited to the activity’s gross income (losses generally cannot offset other income). Determination is facts-and-circumstances.
+
+### The nine-factor framework (Regs. Sec. 1.183-2(b))
+
+No single factor controls; weigh them collectively:
+
+1. Manner of carrying on the activity (businesslike? books? changes to improve profitability?)
+2. Expertise of the taxpayer/advisers
+3. Time and effort devoted
+4. Expectation that assets may appreciate
+5. Success in other similar activities
+6. History of income or losses
+7. Amount of occasional profits (if any)
+8. Financial status of the taxpayer (dependence on income vs ability to fund losses)
+9. Elements of personal pleasure or recreation
+
+### Developments highlighted
+
+- **Bucci (2d Cir., affirming Tax Ct.)**: Horse racing + hay farming treated as not-for-profit activities. Key themes: chronic losses, limited businesslike conduct (especially for farming), and significant personal enjoyment; the taxpayer had substantial other wealth.
+- **Himmel (Tax Ct.)**: Long-running Arabian horse activity lacked a bona fide profit objective. The court emphasized weak planning/adjustments, commingling or poor record discipline, decades of losses, limited sales activity, and substantial personal enjoyment/social benefits.
+
+### Practice takeaways (how to “audit-proof” a profit motive)
+
+- Put a real plan in writing: pricing, marketing, cost controls, and *what you will change* if losses persist.
+- Maintain clean books and separate bank/credit accounts.
+- Document expertise: training, industry research, and consultations.
+- Track time spent and tasks performed.
+- If the pitch includes appreciation (e.g., animals, land, collectibles), keep defensible valuation support.
+
+### Spot-the-factor prompts
+
+- What would you point to as “operated in a businesslike manner” evidence?
+- If losses have run for 5+ years, what specific operational changes were made?
+- If the taxpayer has high outside income, what counters the “tax shelter” narrative?
