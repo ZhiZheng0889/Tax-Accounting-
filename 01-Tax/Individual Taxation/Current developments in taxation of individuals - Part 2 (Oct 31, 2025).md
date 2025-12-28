@@ -235,3 +235,41 @@ Sec. 1256 generally marks certain contracts to market at year end and characteri
 
 - If a taxpayer has a transaction that qualifies under Sec. 1256, what additional hurdle might still deny the loss?
 - What facts would you look for to support profit motive (vs personal/other motives) in a derivatives transaction?
+
+---
+
+## Secs. 1401–1402 — Self-employment tax: characterization and the “limited partner” exception
+
+### A. Sec. 1401 rate / recharacterization: prior IRS refund is not a concession
+
+#### Development highlighted
+
+- **Clark (Tax Ct.)**: Taxpayer treated recurring business income as “other income” not subject to SE tax. The IRS reversed a premature SE tax assessment during pending litigation and refunded, but the Tax Court still held the taxpayer liable for SE tax on the income.
+
+#### Practice takeaways
+
+- A procedural refund (fixing an account during litigation) is not a substantive concession about taxability.
+- If facts show the taxpayer is carrying on a trade/business, SE tax exposure remains even if the return labels it otherwise.
+- For mixed activities (writing, online sales, gig work), maintain clear books and document whether the activity is ongoing, profit-oriented, and regular.
+
+### B. Sec. 1402 definitions: who is really a “limited partner” for SE tax purposes?
+
+#### Core rule to remember
+
+Sec. 1402(a)(13) provides an exception for a limited partner’s distributive share (with important nuances). The Tax Court continues to apply a functional analysis: labels in the partnership agreement are not controlling.
+
+#### Development highlighted
+
+- **Denham Capital Management (Tax Ct.)**: Partners in a private equity firm were “limited in name only.” Despite the limited partnership form, the individuals devoted substantially all time to the business, were integral to generating fees, and engaged in management decisions. Their distributive shares were included in net earnings from self-employment.
+
+#### Practice takeaways
+
+- Expect a role-based inquiry: time commitment, decision authority, client/service work, and whether distributions are really compensation for services.
+- If only one partner contributes capital but multiple partners receive large “distributions,” be prepared to explain the economic deal and service component.
+- Review how guaranteed payments, salary-like policies, and operational responsibilities align with the SE tax position.
+
+### Quick diagnostic questions
+
+- Is the taxpayer providing services to the partnership’s customers/portfolio, or primarily investing capital?
+- Does the partnership agreement require substantial time and attention?
+- Are “distributions” economically tied to labor (fees/services) rather than capital at risk?
