@@ -273,3 +273,38 @@ Sec. 1402(a)(13) provides an exception for a limited partner’s distributive sh
 - Is the taxpayer providing services to the partnership’s customers/portfolio, or primarily investing capital?
 - Does the partnership agreement require substantial time and attention?
 - Are “distributions” economically tied to labor (fees/services) rather than capital at risk?
+
+---
+
+## Sec. 6015 — Relief from joint-and-several liability: when it’s granted vs denied
+
+### Core rule to remember
+
+Joint filers are jointly and severally liable, but Sec. 6015 can provide relief via:
+
+- **(b)** Traditional innocent spouse relief (timely request required; no knowledge/reason to know)
+- **(c)** Separate liability election (often for divorced/separated spouses; allocates underpayment)
+- **(f)** Equitable relief (facts-and-circumstances balancing; different timing rules)
+
+### Relief granted (pattern)
+
+- **Stewart (Tax Ct.)**: Relief under Sec. 6015(c) allowed where spouses had separated, maintained separate finances, the requesting spouse had no insight into the other spouse’s business income, and had no reason to know of the unreported items—even though the return was prepared using consumer software.
+
+### Relief denied (common failure points)
+
+- **Gomez (Tax Ct.)**: Sec. 6015(b)/(c) relief denied due to a missed 2-year deadline measured from IRS collection activity; equitable relief under (f) also denied because knowledge of the underlying income item outweighed favorable factors.
+- **Franco (Tax Ct.)**: Equitable relief denied where the taxpayer did not substantiate economic hardship and the court found she was at least on notice of issues; claims of threats/abuse were not sufficiently supported in the record.
+- **Lucas (Tax Ct.)**: Sec. 6015(b) denied because the requesting spouse had actual knowledge—she prepared the return and omitted known wages (hers and spouse’s), so she could not establish the required lack of knowledge.
+
+### Practice takeaways
+
+- Timing matters: when applicable, calendar the 2-year deadline from the first meaningful IRS collection action.
+- “Knowledge” is the recurring battleground. Preparing the return yourself or signing with obvious omissions is difficult to overcome.
+- For (f) equitable relief, be ready to document monthly living expenses (hardship) and facts supporting abuse/duress if claimed.
+
+### Client interview prompts (fast)
+
+- Who prepared the return, and what did you review before signing?
+- What did you know about the other spouse’s income sources at filing time?
+- When did the IRS first begin collecting (levy notice, refund offset, payment demand)?
+- Would paying the liability cause economic hardship? Can you document it?
