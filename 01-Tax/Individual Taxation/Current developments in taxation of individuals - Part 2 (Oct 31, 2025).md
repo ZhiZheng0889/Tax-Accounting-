@@ -156,3 +156,35 @@ For most taxpayers, the moving expense deduction is suspended (TCJA-era change).
 - “Orders” alone are not enough; confirm the taxpayer is active duty in the Armed Forces (not civilian, not contractor, not general federal employee).
 - Document status: DD-214 equivalents, LES, active-duty documentation, and PCS orders.
 - For nonmilitary moves, focus on employer reimbursement treatment and payroll reporting rather than a Sec. 217 deduction.
+
+---
+
+## Sec. 401 — Retirement plans / IRAs: Roth catch-up proposals and inherited IRA transfers
+
+### A. Proposed regs: Roth catch-up contribution requirement (high earners)
+
+#### What to remember
+
+Proposed rules under Sec. 414(v)(7)(A) address the “Roth catch-up requirement” for applicable employer plans: when an eligible participant’s wages exceed a specified threshold (the article notes $145,000$), catch-up contributions must be treated as **designated Roth** contributions.
+
+#### Practical implications (plan + participant)
+
+- Plans may implement a **deemed** Roth designation for catch-up contributions for impacted participants.
+- Participants must be given an option to stop making the additional deferrals (instead of being forced into a deemed Roth election).
+- Because Roth deferrals are includible in income, impacted participants should expect higher current-year taxable wages/withholding effects for catch-up amounts.
+
+#### Review prompt
+
+- If a participant is above the wage threshold and wants pre-tax catch-up, what are their realistic alternatives (e.g., adjust deferral strategy, use other savings vehicles) given the Roth catch-up framework?
+
+### B. Inherited IRA transfers: trust beneficiary to individual inherited IRAs
+
+#### Development highlighted
+
+- **Letter Ruling 202506004 (Nov. 7, 2024)**: A trust that was the designated beneficiary of a decedent’s retirement account could transfer funds via trustee-to-trustee transfers into inherited IRAs for the individual beneficiaries, provided the inherited IRAs were properly titled in the name of the deceased owner for the benefit of each beneficiary. The transfer itself did not trigger taxable income to the trust/beneficiary, though beneficiaries must include income in respect of a decedent (IRD) amounts in gross income when applicable.
+
+#### Practice takeaways
+
+- Titling is everything: inherited IRA setup must preserve “decedent for benefit of beneficiary” naming.
+- Trustee-to-trustee transfer mechanics reduce distribution/rollover errors.
+- Always coordinate trust terms + beneficiary categories + distribution timing rules before moving assets.
