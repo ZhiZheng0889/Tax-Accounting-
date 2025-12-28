@@ -138,3 +138,21 @@ Medical expenses are deductible only if they are for “medical care” of the t
 - Who received the procedures and whose name is on the bills?
 - Are any costs for legal contracts, agency fees, or compensation unrelated to medical procedures?
 - Do you expect to clear the $7.5\%$ AGI threshold this year, or should you consider bunching eligible expenses?
+
+---
+
+## Sec. 217 — Moving expenses: the post-TCJA military-only rule
+
+### Core rule to remember
+
+For most taxpayers, the moving expense deduction is suspended (TCJA-era change). A narrow exception remains for a **member of the Armed Forces on active duty** who moves pursuant to a military order and incident to a permanent change of station (Sec. 217(g)).
+
+### Development highlighted
+
+- **Kent (Tax Ct.)**: Civilian Air Force contractor received official travel orders and was directed to move, but neither spouse was military. The court held the taxpayers could not claim the moving expense deduction because Sec. 217(g) applies only to active-duty Armed Forces members.
+
+### Practice takeaways
+
+- “Orders” alone are not enough; confirm the taxpayer is active duty in the Armed Forces (not civilian, not contractor, not general federal employee).
+- Document status: DD-214 equivalents, LES, active-duty documentation, and PCS orders.
+- For nonmilitary moves, focus on employer reimbursement treatment and payroll reporting rather than a Sec. 217 deduction.
